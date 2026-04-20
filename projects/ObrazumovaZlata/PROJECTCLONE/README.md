@@ -1,5 +1,38 @@
 # PROJECTCLONE — Клонирование внешнего сервиса
 
+## 0. Как выбирали сервис
+
+Методология: скоринг через VENTURE-SCAN RF 2.0 + ручной анализ конкурентной ниши. Критерии отбора: сервис заблокирован в РФ после 2024 г., рынок > ₽500 млн, нет сильного отечественного аналога с полным функционалом.
+
+Оценивались сервисы в нише **ELN + LIMS** (Electronic Lab Notebook + Laboratory Information Management System):
+
+| # | Сервис | Тип | Доступность в РФ | Почему не выбран |
+|---|--------|-----|-----------------|-----------------|
+| 1 | **Benchling** | ELN+LIMS, cloud | ✗ санкции с сент. 2024 | **Выбран** — лидер рынка, воспроизводимый UI |
+| 2 | LabWare | LIMS, on-premise | ✗ санкции | Только LIMS, нет ELN, enterprise-сложность |
+| 3 | STARLIMS (Abbott) | LIMS, enterprise | ✗ санкции | Нет ELN, закрытый enterprise-продукт |
+| 4 | Labguru / Cenevo | ELN+LIMS, cloud | ✗ санкции | Меньший рынок, хуже документация |
+| 5 | eLabFTW | ELN, open-source | ✓ | Только ELN, нет LIMS, нет AI-слоя |
+| 6 | 1С:LIMS | LIMS, РФ | ✓ | Только LIMS, нет ELN, нет AI, 1С-экосистема |
+| 7 | myLab (ЛИКОРИС) | LIMS, cloud РФ | ✓ | Только испытательные лаборатории, нет ELN |
+| 8 | LabArchives | ELN, cloud | ✗ санкции | Только ELN, слабый LIMS |
+| 9 | RSpace | ELN, cloud/on-prem | ✗ санкции | Только ELN, академический фокус |
+| 10 | SciNote | ELN, cloud | ✗ санкции | Только ELN, нет LIMS-модуля |
+| 11 | Sapio Sciences | ELN+LIMS | ✗ санкции | Сложная enterprise-интеграция, дорого |
+| 12 | Dotmatics | ELN+LIMS+анализ | ✗ санкции | Тяжёлый стек, pharma/biotech enterprise |
+| 13 | Scispot | ELN+LIMS, cloud | ✗ санкции | Молодой продукт, меньше функционала |
+| 14 | Waters NuGenesis | LIMS, enterprise | ✗ санкции | Только LIMS, фокус на аналитику |
+| 15 | Thermo SampleManager | LIMS, enterprise | ✗ санкции | Только LIMS, требует внедрения вендора |
+| 16 | LabVantage | LIMS, cloud/on-prem | ✗ санкции | Только LIMS, enterprise |
+| 17 | OpenBIS | ELN+LIMS, open-source | ✓ | Академический, сложный UI, нет поддержки |
+| 18 | Quartzy | Inventory+ELN | ✗ санкции | Слабый LIMS, нет AI |
+| 19 | Labii | ELN+LIMS, cloud | ✗ санкции | Малоизвестен в РФ, узкая ниша |
+| 20 | LabCollector | LIMS, cloud/on-prem | частично | Французский вендор, слабый ELN |
+| 21 | iLabber | ELN+LIMS, cloud | ✗ санкции | Нишевый, академический |
+| 22 | Freezerworks | Sample management | ✗ санкции | Только учёт образцов, нет ELN |
+
+**Вывод:** Benchling — единственный сервис с полным стеком ELN+LIMS+AI+Project management, заблокированный в РФ, с воспроизводимым React-интерфейсом и открытой документацией архитектуры.
+
 ## 1. Выбранный сервис
 
 **Benchling** — [benchling.com](https://benchling.com)
