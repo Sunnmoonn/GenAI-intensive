@@ -1,6 +1,6 @@
 # CODEBASE
 
-Описание кодовой базы проекта КИН / kin-watch.
+Описание кодовой базы проекта РЯДОМ.
 
 **Основной репозиторий:** [yarochkinama/kin-watch](https://github.com/yarochkinama/kin-watch)
 
