@@ -1,5 +1,5 @@
 ---
-name: изобразика
+name: img
 description: Генерирует изображения через kie.ai API. Все модели GEN Studio — Nano Banana, Flux, Seedream, Ideogram, GPT-4o, Z-Image, Grok. Вызывай когда пользователь просит создать/нарисовать изображение, или сам предлагай при работе над визуальным контентом.
 ---
 

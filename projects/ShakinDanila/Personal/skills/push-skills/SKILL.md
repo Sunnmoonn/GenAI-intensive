@@ -1,5 +1,5 @@
 ---
-name: пуш-скиллов
+name: push-skills
 description: >
   Синхронизирует локальные скиллы из ~/.claude/skills/ в GitHub репозиторий
   projects/ShakinDanila/Personal/skills/. Копирует новые/обновлённые скиллы,
