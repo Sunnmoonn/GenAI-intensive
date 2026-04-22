@@ -1,0 +1,151 @@
+import type { Organisation, DeathCase, NotificationRequest } from './types'
+
+export const ORGANISATIONS: Organisation[] = [
+  { id: 'barclays',      name: 'Barclays Bank',       category: 'Banks' },
+  { id: 'hsbc',          name: 'HSBC',                category: 'Banks' },
+  { id: 'lloyds',        name: 'Lloyds Bank',         category: 'Banks' },
+  { id: 'natwest',       name: 'NatWest',             category: 'Banks' },
+  { id: 'santander',     name: 'Santander UK',        category: 'Banks' },
+  { id: 'british-gas',   name: 'British Gas',         category: 'Utilities' },
+  { id: 'thames-water',  name: 'Thames Water',        category: 'Utilities' },
+  { id: 'national-grid', name: 'National Grid',       category: 'Utilities' },
+  { id: 'bt',            name: 'BT Group',            category: 'Telecom' },
+  { id: 'vodafone',      name: 'Vodafone UK',         category: 'Telecom' },
+  { id: 'o2',            name: 'O2 UK',               category: 'Telecom' },
+  { id: 'hmrc',          name: 'HMRC',                category: 'Government' },
+  { id: 'dvla',          name: 'DVLA',                category: 'Government' },
+  { id: 'dwp',           name: 'DWP / Pension',       category: 'Government' },
+  { id: 'passport',      name: 'HM Passport Office',  category: 'Government' },
+  { id: 'council-tax',   name: 'Council Tax Office',  category: 'Government' },
+  { id: 'aviva',         name: 'Aviva Insurance',     category: 'Insurance' },
+  { id: 'legal-general', name: 'Legal & General',     category: 'Insurance' },
+  { id: 'axa',           name: 'AXA UK',              category: 'Insurance' },
+]
+
+const ago = (days: number) =>
+  new Date(Date.now() - days * 86_400_000).toISOString()
+
+export const DEMO_CASE: DeathCase = {
+  id: 'case-demo-001',
+  deceasedFirstName: 'Дэвид',
+  deceasedLastName: 'Харрисон',
+  deceasedDOB: '1942-03-15',
+  dateOfDeath: '2024-11-28',
+  initiatorName: 'Сара Харрисон',
+  initiatorRole: 'дочь',
+  initiatorEmail: 'sarah@example.com',
+  createdAt: ago(3),
+}
+
+export const DEMO_REQUESTS: NotificationRequest[] = [
+  {
+    id: 'req-barclays',
+    caseId: 'case-demo-001',
+    orgId: 'barclays',
+    orgName: 'Barclays Bank',
+    orgCategory: 'Banks',
+    status: 'COMPLETED',
+    history: [
+      { status: 'PENDING',      timestamp: ago(3) },
+      { status: 'SENT',         timestamp: ago(3) },
+      { status: 'ACKNOWLEDGED', timestamp: ago(2) },
+      { status: 'PROCESSING',   timestamp: ago(1) },
+      { status: 'COMPLETED',    timestamp: ago(0), note: 'Аккаунт закрыт, средства переведены исполнителю' },
+    ],
+    createdAt: ago(3),
+  },
+  {
+    id: 'req-hmrc',
+    caseId: 'case-demo-001',
+    orgId: 'hmrc',
+    orgName: 'HMRC',
+    orgCategory: 'Government',
+    status: 'PROCESSING',
+    history: [
+      { status: 'PENDING',      timestamp: ago(3) },
+      { status: 'SENT',         timestamp: ago(3) },
+      { status: 'ACKNOWLEDGED', timestamp: ago(2) },
+      { status: 'PROCESSING',   timestamp: ago(1), note: 'Проверяем налоговые записи' },
+    ],
+    createdAt: ago(3),
+  },
+  {
+    id: 'req-british-gas',
+    caseId: 'case-demo-001',
+    orgId: 'british-gas',
+    orgName: 'British Gas',
+    orgCategory: 'Utilities',
+    status: 'ACKNOWLEDGED',
+    history: [
+      { status: 'PENDING',      timestamp: ago(3) },
+      { status: 'SENT',         timestamp: ago(3) },
+      { status: 'ACKNOWLEDGED', timestamp: ago(1), note: 'Уведомление получено, назначен менеджер' },
+    ],
+    createdAt: ago(3),
+  },
+  {
+    id: 'req-vodafone',
+    caseId: 'case-demo-001',
+    orgId: 'vodafone',
+    orgName: 'Vodafone UK',
+    orgCategory: 'Telecom',
+    status: 'SENT',
+    history: [
+      { status: 'PENDING', timestamp: ago(3) },
+      { status: 'SENT',    timestamp: ago(2) },
+    ],
+    createdAt: ago(3),
+  },
+  {
+    id: 'req-aviva',
+    caseId: 'case-demo-001',
+    orgId: 'aviva',
+    orgName: 'Aviva Insurance',
+    orgCategory: 'Insurance',
+    status: 'SENT',
+    history: [
+      { status: 'PENDING', timestamp: ago(3) },
+      { status: 'SENT',    timestamp: ago(2) },
+    ],
+    createdAt: ago(3),
+  },
+  {
+    id: 'req-lloyds',
+    caseId: 'case-demo-001',
+    orgId: 'lloyds',
+    orgName: 'Lloyds Bank',
+    orgCategory: 'Banks',
+    status: 'REJECTED',
+    history: [
+      { status: 'PENDING',      timestamp: ago(3) },
+      { status: 'SENT',         timestamp: ago(3) },
+      { status: 'ACKNOWLEDGED', timestamp: ago(2) },
+      { status: 'REJECTED',     timestamp: ago(1), note: 'Нет активных счетов на данное имя' },
+    ],
+    createdAt: ago(3),
+  },
+  {
+    id: 'req-dvla',
+    caseId: 'case-demo-001',
+    orgId: 'dvla',
+    orgName: 'DVLA',
+    orgCategory: 'Government',
+    status: 'PENDING',
+    history: [
+      { status: 'PENDING', timestamp: ago(3) },
+    ],
+    createdAt: ago(3),
+  },
+  {
+    id: 'req-natwest',
+    caseId: 'case-demo-001',
+    orgId: 'natwest',
+    orgName: 'NatWest',
+    orgCategory: 'Banks',
+    status: 'PENDING',
+    history: [
+      { status: 'PENDING', timestamp: ago(3) },
+    ],
+    createdAt: ago(3),
+  },
+]

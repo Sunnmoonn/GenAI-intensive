@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+:root {
+  --bg: #07071a;
+  --card: #0b1225;
+  --card-hover: #0f1830;
+  --border: rgba(99, 130, 210, 0.13);
+  --border-hover: rgba(79, 130, 255, 0.38);
+  --text: #e2e8f0;
+  --muted: #7a8aa0;
+  --accent: #5b8def;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 60% 52% at 88% -6%, rgba(72, 95, 255, 0.52) 0%, rgba(48, 65, 200, 0.16) 42%, transparent 65%),
+    radial-gradient(ellipse 28% 26% at 97% 2%, rgba(155, 188, 255, 0.18) 0%, transparent 42%),
+    radial-gradient(ellipse 50% 60% at 0% 100%, rgba(12, 20, 70, 0.35) 0%, transparent 55%);
+  background-attachment: fixed;
+}
+
+/* Subtle grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  pointer-events: none;
+  z-index: 9999;
+}

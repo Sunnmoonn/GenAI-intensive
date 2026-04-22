@@ -1,0 +1,45 @@
+name: Sync to GenAI-intensive
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kopirka
+        uses: actions/checkout@v4
+        with:
+          path: kopirka
+
+      - name: Checkout GenAI-intensive
+        uses: actions/checkout@v4
+        with:
+          repository: rudometkin/GenAI-intensive
+          token: ${{ secrets.GENAI_PAT }}
+          path: genai-intensive
+
+      - name: Sync files
+        run: |
+          rsync -av --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.next' \
+            --exclude='.vercel' \
+            --exclude='*.tsbuildinfo' \
+            --exclude='next-env.d.ts' \
+            kopirka/ genai-intensive/projects/ShakinDanila/Kopirka/
+
+      - name: Commit and push
+        run: |
+          cd genai-intensive
+          git config user.name "DanydeDeveloper"
+          git config user.email "danyshakin@gmail.com"
+          git add projects/ShakinDanila/Kopirka/
+          if git diff --cached --quiet; then
+            echo "No changes to sync"
+          else
+            git commit -m "sync: Kopirka → ${{ github.sha }}"
+            git push
+          fi

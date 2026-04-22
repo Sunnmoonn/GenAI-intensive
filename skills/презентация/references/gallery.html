@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Галерея шаблонов презентаций</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================
+       GALLERY BASE
+       ====================================================== */
+    .reveal { font-family: 'Inter', sans-serif; font-size: 32px; }
+    .reveal .slides section { padding: 48px 64px; text-align: left; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { margin: 0 0 0.4em; line-height: 1.1; }
+    .reveal p { margin: 0 0 0.4em; line-height: 1.5; }
+    .reveal ul { margin: 0 0 0.4em 1.2em; line-height: 1.6; }
+    .reveal li { margin-bottom: 0.25em; }
+    .reveal strong { font-weight: 700; }
+
+    /* ======================================================
+       LABEL OVERLAY — метка в углу каждого слайда
+       ====================================================== */
+    .slide-label {
+      position: fixed;
+      bottom: 18px;
+      right: 24px;
+      font-size: 0.42em;
+      font-family: 'Inter', monospace;
+      opacity: 0.55;
+      background: rgba(0,0,0,0.15);
+      padding: 4px 10px;
+      border-radius: 4px;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    /* ======================================================
+       LAYOUT UTILITIES (shared)
+       ====================================================== */
+    .slide-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; align-items: start; }
+    .slide-cols.cols-6-4 { grid-template-columns: 6fr 4fr; }
+    .big-num { font-family: 'Bebas Neue', 'Montserrat', sans-serif; font-size: 5em; line-height: 0.9; letter-spacing: -0.02em; }
+    .big-num-label { font-size: 0.5em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3em; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5em; }
+    .kpi-item { text-align: center; }
+    .kpi-item .big-num { font-size: 3.5em; }
+    .tag { display: inline-block; padding: 0.15em 0.7em; font-size: 0.5em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6em; }
+    .divider { width: 60px; height: 4px; margin: 0.5em 0; }
+    .steps { counter-reset: step; list-style: none; margin: 0; padding: 0; }
+    .steps li { counter-increment: step; display: flex; align-items: flex-start; gap: 0.8em; margin-bottom: 0.5em; }
+    .steps li::before { content: counter(step); min-width: 1.5em; height: 1.5em; border-radius: 50%; font-weight: 800; font-size: 0.65em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.05em; }
+    .blockquote-big { font-size: 1.15em; font-style: italic; line-height: 1.4; border-left: 5px solid; padding-left: 1em; margin: 0; }
+    .blockquote-source { font-size: 0.5em; margin-top: 0.8em; font-style: normal; font-weight: 600; }
+    .img-box { background: rgba(0,0,0,0.06); border-radius: 8px; display: flex; align-items: center; justify-content: center; min-height: 220px; font-size: 0.6em; opacity: 0.5; }
+    .contact-name { font-family: 'Bebas Neue', 'Montserrat', sans-serif; font-size: 2.2em; line-height: 1; }
+    .contact-links { margin-top: 0.8em; font-size: 0.55em; line-height: 2; }
+    .text-muted { opacity: 0.55; }
+    .reveal .progress { height: 4px; }
+
+    /* ======================================================
+       SECTION INTRO slides (navigation)
+       ====================================================== */
+    .section-intro {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      background: #111 !important;
+      padding: 48px 64px !important;
+    }
+    .section-intro .chapter-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6em;
+      line-height: 0.9;
+      opacity: 0.12;
+      color: #fff;
+      margin-bottom: -0.1em;
+    }
+    .section-intro h2 { color: #fff !important; font-size: 1.8em; font-family: 'Bebas Neue', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .section-intro p { color: rgba(255,255,255,0.6); font-size: 0.6em; }
+
+    /* ======================================================
+       STYLE 1 — MINIMALISM 2.0
+       ====================================================== */
+    .s-min {
+      --bg: #ffffff; --surface: #f8f9fc; --text: #111827; --muted: #6b7280;
+      --accent: #2563eb; --accent-t: #fff; --border: #e5e7eb;
+      background: var(--bg) !important; color: var(--text) !important;
+      border-top: 5px solid var(--accent) !important;
+    }
+    .s-min h1, .s-min h2, .s-min h3 { color: var(--text); font-family: 'Montserrat', sans-serif; }
+    .s-min h1 { font-size: 2.2em; font-weight: 900; }
+    .s-min h2 { font-size: 1.4em; font-weight: 800; }
+    .s-min .big-num { color: var(--accent); }
+    .s-min .divider { background: var(--accent); }
+    .s-min .tag { background: rgba(37,99,235,0.1); color: var(--accent); border-radius: 999px; }
+    .s-min .steps li::before { background: var(--accent); color: #fff; }
+    .s-min ul { list-style: none; padding-left: 0; }
+    .s-min ul li::before { content: '—'; color: var(--accent); font-weight: 700; margin-right: 0.4em; }
+    .s-min .blockquote-big { border-color: var(--accent); }
+    .s-min .text-muted { color: var(--muted); }
+    .s-min .img-box { background: var(--surface); border: 1px solid var(--border); }
+    .s-min .contact-name { color: var(--accent); }
+    .s-min strong { color: var(--accent); }
+    .s-min .slide-label { color: #2563eb; background: rgba(37,99,235,0.08); }
+    .s-min .reveal .progress span { background: var(--accent); }
+    .s-min .highlight { background: var(--surface); border-left: 4px solid var(--accent); padding: 0.7em 1em; }
+
+    /* ======================================================
+       STYLE 2 — DARK MODE
+       ====================================================== */
+    .s-dark {
+      --bg: #0f172a; --surface: #1e293b; --text: #f1f5f9; --muted: #94a3b8;
+      --accent: #00ff87; --accent-t: #0f172a; --border: #334155;
+      background: var(--bg) !important; color: var(--text) !important;
+    }
+    .s-dark h1, .s-dark h2, .s-dark h3 { color: var(--text) !important; font-family: 'Montserrat', sans-serif; }
+    .s-dark h1 { font-size: 2.2em; font-weight: 900; text-shadow: 0 0 40px rgba(0,255,135,0.25); }
+    .s-dark h2 { font-size: 1.4em; font-weight: 800; }
+    .s-dark .big-num { color: var(--accent); }
+    .s-dark .divider { background: var(--accent); }
+    .s-dark .tag { background: rgba(0,255,135,0.1); color: var(--accent); border: 1px solid rgba(0,255,135,0.25); border-radius: 4px; }
+    .s-dark .steps li::before { background: var(--accent); color: var(--accent-t); }
+    .s-dark ul { list-style: none; padding-left: 0; }
+    .s-dark ul li::before { content: '▸'; color: var(--accent); font-weight: 700; margin-right: 0.4em; }
+    .s-dark .blockquote-big { border-color: var(--accent); }
+    .s-dark .text-muted { color: var(--muted); }
+    .s-dark .img-box { background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
+    .s-dark .contact-name { color: var(--accent); }
+    .s-dark strong { color: var(--accent); }
+    .s-dark .slide-label { color: #00ff87; background: rgba(0,255,135,0.08); }
+    .s-dark .highlight { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 0.7em 1em; border-radius: 0 6px 6px 0; }
+
+    /* ======================================================
+       STYLE 3 — NEOBRUTALISM
+       ====================================================== */
+    .s-neo {
+      --bg: #fffbeb; --surface: #fff; --text: #111; --muted: #555;
+      --accent: #ff6b00; --accent-t: #fff; --border: #111;
+      background: var(--bg) !important; color: var(--text) !important;
+      border: 3px solid #111 !important;
+    }
+    .s-neo h1, .s-neo h2, .s-neo h3 { color: var(--text) !important; font-family: 'Bebas Neue', 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }
+    .s-neo h1 { font-size: 2.6em; }
+    .s-neo h2 { font-size: 1.8em; }
+    .s-neo .big-num { color: var(--accent); -webkit-text-stroke: 1.5px #111; font-family: 'Bebas Neue', sans-serif; }
+    .s-neo .divider { background: #111; height: 5px; width: 80px; }
+    .s-neo .tag { background: #111; color: #fff; border-radius: 0; }
+    .s-neo .steps li::before { background: var(--accent); color: #fff; border-radius: 0; font-family: 'Bebas Neue', sans-serif; font-size: 0.75em; }
+    .s-neo ul { list-style: none; padding-left: 0; }
+    .s-neo ul li::before { content: '✕'; color: var(--accent); font-weight: 900; margin-right: 0.4em; }
+    .s-neo .blockquote-big { border-color: var(--accent); }
+    .s-neo .text-muted { color: var(--muted); }
+    .s-neo .img-box { background: var(--surface); border: 3px solid #111; box-shadow: 4px 6px 0 #111; }
+    .s-neo .contact-name { color: var(--accent); }
+    .s-neo strong { color: var(--accent); }
+    .s-neo .slide-label { color: #ff6b00; background: rgba(255,107,0,0.08); }
+    .s-neo .highlight { background: var(--surface); border: 3px solid #111; box-shadow: 4px 6px 0 #111; padding: 0.7em 1em; }
+
+    /* ======================================================
+       DENSITY labels styling
+       ====================================================== */
+    .density-badge {
+      display: inline-block;
+      padding: 0.2em 0.8em;
+      font-size: 0.45em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8em;
+    }
+    .badge-min { background: #dcfce7; color: #166534; border-radius: 4px; }
+    .badge-std { background: #dbeafe; color: #1e40af; border-radius: 4px; }
+    .badge-dense { background: #fef3c7; color: #92400e; border-radius: 4px; }
+
+    /* ======================================================
+       COVER SLIDE
+       ====================================================== */
+    .gallery-cover {
+      background: #0a0a0a !important;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 48px 64px !important;
+    }
+    .gallery-cover h1 {
+      font-family: 'Bebas Neue', sans-serif !important;
+      color: #fff !important;
+      font-size: 3em;
+      line-height: 1;
+      letter-spacing: 0.03em;
+    }
+    .gallery-cover .subtitle { color: rgba(255,255,255,0.5); font-size: 0.65em; margin-top: 0.5em; }
+    .gallery-cover .nav-hint { color: rgba(255,255,255,0.3); font-size: 0.45em; margin-top: 2em; }
+    .gallery-cover .accent-word { color: #00ff87; }
+    .gallery-cover .toc { margin-top: 1.5em; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4em; }
+    .gallery-cover .toc-item { font-size: 0.5em; color: rgba(255,255,255,0.4); padding: 0.4em 0.8em; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; }
+    .gallery-cover .toc-item .num { color: #00ff87; font-weight: 700; margin-right: 0.4em; }
+
+    /* ======================================================
+       COMPARE SLIDE for style overview
+       ====================================================== */
+    .style-compare {
+      background: #111 !important;
+      padding: 32px 48px !important;
+    }
+    .style-compare h2 { color: #fff !important; font-family: 'Bebas Neue', sans-serif; font-size: 1.4em; text-transform: uppercase; }
+    .style-swatches { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5em; margin-top: 0.8em; }
+    .swatch { border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+    .swatch-header { padding: 1em 1.2em; }
+    .swatch-name { font-size: 0.6em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+    .swatch-desc { font-size: 0.45em; opacity: 0.6; margin-top: 0.3em; }
+    .swatch-body { padding: 0.8em 1.2em; }
+    .swatch-h { font-weight: 800; font-size: 0.75em; margin-bottom: 0.2em; }
+    .swatch-p { font-size: 0.5em; opacity: 0.7; line-height: 1.4; }
+    .swatch-accent-bar { height: 3px; width: 100%; }
+
+    /* MIN swatch */
+    .sw-min .swatch-header { background: #fff; }
+    .sw-min .swatch-name { color: #111; }
+    .sw-min .swatch-body { background: #f8f9fc; }
+    .sw-min .swatch-h { color: #111; font-family: 'Montserrat', sans-serif; }
+    .sw-min .swatch-p { color: #6b7280; }
+    .sw-min .swatch-accent-bar { background: #2563eb; }
+
+    /* DARK swatch */
+    .sw-dark .swatch-header { background: #0f172a; }
+    .sw-dark .swatch-name { color: #00ff87; }
+    .sw-dark .swatch-body { background: #1e293b; }
+    .sw-dark .swatch-h { color: #f1f5f9; font-family: 'Montserrat', sans-serif; }
+    .sw-dark .swatch-p { color: #94a3b8; }
+    .sw-dark .swatch-accent-bar { background: #00ff87; }
+
+    /* NEO swatch */
+    .sw-neo .swatch-header { background: #fffbeb; border-bottom: 3px solid #111; }
+    .sw-neo .swatch-name { color: #111; font-family: 'Bebas Neue', sans-serif; font-size: 0.8em; letter-spacing: 0.05em; }
+    .sw-neo .swatch-body { background: #fff; border: 3px solid #111; border-top: none; }
+    .sw-neo .swatch-h { color: #111; font-family: 'Bebas Neue', sans-serif; }
+    .sw-neo .swatch-p { color: #555; }
+    .sw-neo .swatch-accent-bar { background: #ff6b00; }
+
+    /* ======================================================
+       DENSITY compare slide
+       ====================================================== */
+    .density-compare {
+      background: #f8f9fc !important;
+      padding: 32px 48px !important;
+    }
+    .density-compare h2 { color: #111 !important; font-family: 'Montserrat', sans-serif; font-size: 1.3em; font-weight: 900; }
+    .density-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5em; margin-top: 0.8em; }
+    .density-col { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.2em; }
+    .density-col-title { font-size: 0.55em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6em; }
+    .density-col-content { font-size: 0.5em; color: #6b7280; line-height: 1.6; }
+    .d-minimal .density-col-title { color: #166534; }
+    .d-standard .density-col-title { color: #1e40af; }
+    .d-dense .density-col-title { color: #92400e; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ======================================================
+     COVER
+     ====================================================== -->
+<section>
+  <div class="gallery-cover">
+    <div style="font-size:0.45em;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1em;">Библиотека · 2026</div>
+    <h1>Галерея<br><span class="accent-word">шаблонов</span><br>презентаций</h1>
+    <p class="subtitle">3 стиля · 12 макетов · 3 насыщенности</p>
+    <div class="toc">
+      <div class="toc-item"><span class="num">1.</span>Обзор стилей</div>
+      <div class="toc-item"><span class="num">2.</span>Насыщенность</div>
+      <div class="toc-item"><span class="num">3.</span>Minimalism 2.0</div>
+      <div class="toc-item"><span class="num">4.</span>Dark Mode</div>
+      <div class="toc-item"><span class="num">5.</span>Neobrutalism</div>
+      <div class="toc-item"><span class="num">6.</span>Диаграммы & Графики</div>
+    </div>
+    <p class="nav-hint">→ стрелки для навигации · Esc — обзор · O — список слайдов</p>
+  </div>
+</section>
+
+<!-- ======================================================
+     SECTION 1 — СТИЛИ
+     ====================================================== -->
+<section>
+  <div class="section-intro">
+    <div class="chapter-num">01</div>
+    <h2>Стили</h2>
+    <p>3 визуальные темы под разные задачи</p>
+  </div>
+</section>
+
+<!-- Сравнение стилей -->
+<section class="style-compare">
+  <h2>Три стиля — три настроения</h2>
+  <div class="style-swatches">
+    <div class="swatch sw-min">
+      <div class="swatch-accent-bar"></div>
+      <div class="swatch-header">
+        <div class="swatch-name">Minimalism 2.0</div>
+        <div class="swatch-desc">Белый · Синий · Inter/Montserrat</div>
+      </div>
+      <div class="swatch-body">
+        <div class="swatch-h">Заголовок слайда</div>
+        <div class="swatch-p">Питч-деки, инвесторы, деловые встречи. Чистота и пространство как главный элемент дизайна.</div>
+      </div>
+    </div>
+    <div class="swatch sw-dark">
+      <div class="swatch-accent-bar"></div>
+      <div class="swatch-header">
+        <div class="swatch-name">Dark Mode</div>
+        <div class="swatch-desc">Тёмный · Зелёный · Neon glow</div>
+      </div>
+      <div class="swatch-body">
+        <div class="swatch-h">Заголовок слайда</div>
+        <div class="swatch-p">Продуктовые, технические, SaaS. Premium-ощущение, выделяется среди стандартных презентаций.</div>
+      </div>
+    </div>
+    <div class="swatch sw-neo">
+      <div class="swatch-accent-bar"></div>
+      <div class="swatch-header">
+        <div class="swatch-name">NEOBRUTALISM</div>
+        <div class="swatch-desc">Жёлтый · Оранжевый · Thick borders</div>
+      </div>
+      <div class="swatch-body">
+        <div class="swatch-h">ЗАГОЛОВОК СЛАЙДА</div>
+        <div class="swatch-p">Конференции, смелые выступления, стартапы. Запоминается. Неожиданно.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">СРАВНЕНИЕ СТИЛЕЙ</div>
+</section>
+
+<!-- ======================================================
+     SECTION 2 — НАСЫЩЕННОСТЬ
+     ====================================================== -->
+<section>
+  <div class="section-intro">
+    <div class="chapter-num">02</div>
+    <h2>Насыщенность</h2>
+    <p>Количество информации на слайде</p>
+  </div>
+</section>
+
+<!-- Сравнение density -->
+<section class="density-compare">
+  <h2>Три уровня насыщенности</h2>
+  <div class="density-cols">
+    <div class="density-col d-minimal">
+      <div class="density-col-title">🌿 Minimal</div>
+      <div class="density-col-content">
+        <strong>10–20 слов на слайде</strong><br><br>
+        Один ключевой тезис.<br>
+        Много белого пространства.<br>
+        Крупные числа и образы.<br><br>
+        <em>Когда: выступление на сцене, конференция, живое ведение</em>
+      </div>
+    </div>
+    <div class="density-col d-standard">
+      <div class="density-col-title">⚖️ Standard</div>
+      <div class="density-col-content">
+        <strong>30–50 слов на слайде</strong><br><br>
+        2-3 тезиса с пояснением.<br>
+        Один визуальный элемент.<br>
+        Баланс текст / пространство.<br><br>
+        <em>Когда: Zoom-звонок, питч инвестору, product demo</em>
+      </div>
+    </div>
+    <div class="density-col d-dense">
+      <div class="density-col-title">📊 Dense</div>
+      <div class="density-col-content">
+        <strong>60–100 слов на слайде</strong><br><br>
+        Таблицы, детальные списки.<br>
+        Несколько колонок.<br>
+        Аннотации и данные.<br><br>
+        <em>Когда: отчёт, документация, самостоятельное чтение</em>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">НАСЫЩЕННОСТЬ</div>
+</section>
+
+<!-- ======================================================
+     SECTION 3 — MINIMALISM макеты
+     ====================================================== -->
+<section>
+  <div class="section-intro">
+    <div class="chapter-num">03</div>
+    <h2>Minimalism 2.0</h2>
+    <p>Все макеты в белом стиле</p>
+  </div>
+</section>
+
+<!-- MIN: Title -->
+<section class="s-min">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;padding:0;">
+    <div class="tag">Питч · Инвесторы</div>
+    <h1>LookBook — AI-примерка причёсок</h1>
+    <div class="divider"></div>
+    <p style="color:#6b7280;font-size:0.7em;">Как мы выросли до 12 000 пользователей за 3 месяца</p>
+    <p style="color:#9ca3af;font-size:0.5em;margin-top:1.5em;">Егор Рудометкин · Март 2026</p>
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · title · standard</div>
+</section>
+
+<!-- MIN: Big Number minimal -->
+<section class="s-min">
+  <h2>Ключевая метрика</h2>
+  <div class="divider"></div>
+  <div class="big-num" style="color:#2563eb;">340%</div>
+  <p class="big-num-label" style="color:#6b7280;">рост MRR за 3 месяца</p>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · big-number · minimal</div>
+</section>
+
+<!-- MIN: KPI grid standard -->
+<section class="s-min">
+  <h2>Результаты</h2>
+  <div class="divider"></div>
+  <div class="kpi-grid">
+    <div class="kpi-item">
+      <div class="big-num" style="font-size:3.5em;color:#2563eb;">12к</div>
+      <div class="big-num-label" style="color:#6b7280;">пользователей</div>
+    </div>
+    <div class="kpi-item">
+      <div class="big-num" style="font-size:3.5em;color:#2563eb;">340%</div>
+      <div class="big-num-label" style="color:#6b7280;">рост MRR</div>
+    </div>
+    <div class="kpi-item">
+      <div class="big-num" style="font-size:3.5em;color:#2563eb;">4.8★</div>
+      <div class="big-num-label" style="color:#6b7280;">оценка</div>
+    </div>
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · big-number · kpi-grid · standard</div>
+</section>
+
+<!-- MIN: Bullets standard -->
+<section class="s-min">
+  <h2>Почему это работает</h2>
+  <div class="divider"></div>
+  <ul>
+    <li><strong>AI-генерация за 10 секунд</strong> — не нужно ждать часами</li>
+    <li><strong>20+ стилей причёсок</strong> — от классики до авангарда</li>
+    <li><strong>Любое фото с телефона</strong> — никаких профессиональных съёмок</li>
+    <li><strong>Бесплатный старт</strong> — без регистрации и карты</li>
+  </ul>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · bullets · standard</div>
+</section>
+
+<!-- MIN: Bullets dense (2 col) -->
+<section class="s-min">
+  <h2>Технический стек</h2>
+  <div class="slide-cols" style="margin-top:0.3em;">
+    <ul style="font-size:0.75em;">
+      <li><strong>Frontend:</strong> React + TypeScript</li>
+      <li><strong>Backend:</strong> Node.js + Fastify</li>
+      <li><strong>AI Core:</strong> Claude API (Sonnet)</li>
+      <li><strong>Image Gen:</strong> kie.ai (Flux, Ideogram)</li>
+    </ul>
+    <ul style="font-size:0.75em;">
+      <li><strong>Database:</strong> SQLite + Redis</li>
+      <li><strong>Auth:</strong> Supabase Auth</li>
+      <li><strong>Hosting:</strong> VPS + Nginx + PM2</li>
+      <li><strong>Analytics:</strong> PostHog</li>
+    </ul>
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · bullets · dense · 2-col</div>
+</section>
+
+<!-- MIN: Text-image -->
+<section class="s-min">
+  <h2>Как это работает</h2>
+  <div class="slide-cols cols-6-4" style="margin-top:0.3em;">
+    <div>
+      <div class="divider"></div>
+      <p style="font-size:0.75em;">Пользователь загружает фото и выбирает желаемый стиль. <strong>AI за 10 секунд</strong> генерирует реалистичный результат.</p>
+      <ul style="font-size:0.7em;margin-top:0.5em;">
+        <li>Загрузка фото с телефона</li>
+        <li>Выбор стиля из каталога</li>
+        <li>Генерация и скачивание</li>
+      </ul>
+    </div>
+    <div class="img-box" style="min-height:280px;font-size:0.55em;color:#9ca3af;">📸 Скриншот продукта</div>
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · text-image · standard</div>
+</section>
+
+<!-- MIN: Comparison -->
+<section class="s-min">
+  <h2>До и после</h2>
+  <div class="slide-cols" style="margin-top:0.3em;">
+    <div class="highlight" style="background:#f8f9fc;border-left:4px solid #e5e7eb;padding:0.8em 1em;">
+      <h3 style="color:#6b7280;font-size:0.65em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5em;">Было</h3>
+      <ul style="font-size:0.7em;">
+        <li>Фото в парикмахерской — 30 мин ожидания</li>
+        <li>Догадки о результате стрижки</li>
+        <li>Разочарование после</li>
+      </ul>
+    </div>
+    <div class="highlight" style="background:#eff6ff;border-left:4px solid #2563eb;padding:0.8em 1em;">
+      <h3 style="color:#2563eb;font-size:0.65em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5em;">Стало</h3>
+      <ul style="font-size:0.7em;">
+        <li><strong>AI-примерка за 10 секунд</strong></li>
+        <li><strong>Видишь результат до похода</strong></li>
+        <li><strong>Уверенный выбор</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · comparison · standard</div>
+</section>
+
+<!-- MIN: Quote -->
+<section class="s-min">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+    <div style="font-size:3.5em;color:#2563eb;line-height:0.8;margin-bottom:0.2em;">&ldquo;</div>
+    <blockquote class="blockquote-big" style="border-color:#2563eb;font-size:1.1em;">
+      Наконец-то я знаю, как буду выглядеть после стрижки. Показала мастеру — он сразу понял что хочу.
+    </blockquote>
+    <p class="blockquote-source" style="color:#6b7280;">— Анна К., пользователь LookBook, Москва</p>
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · quote · minimal</div>
+</section>
+
+<!-- MIN: Steps -->
+<section class="s-min">
+  <h2>Как начать за 3 шага</h2>
+  <div class="divider"></div>
+  <ol class="steps" style="font-size:0.75em;">
+    <li style="margin-bottom:0.8em;">
+      <div>
+        <strong>Откройте lookbook.rud-ai.ru</strong><br>
+        <span style="color:#6b7280;">Без регистрации, сразу к делу</span>
+      </div>
+    </li>
+    <li style="margin-bottom:0.8em;">
+      <div>
+        <strong>Загрузите своё фото</strong><br>
+        <span style="color:#6b7280;">Любое фото лица, смартфон подойдёт</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Выберите стиль — получите результат</strong><br>
+        <span style="color:#6b7280;">20+ причёсок, генерация за 10 секунд</span>
+      </div>
+    </li>
+  </ol>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · steps · standard</div>
+</section>
+
+<!-- MIN: Contact -->
+<section class="s-min">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+    <div class="tag">Спасибо за внимание</div>
+    <div class="contact-name" style="color:#2563eb;font-family:'Bebas Neue',sans-serif;font-size:2.3em;">Егор Рудометкин</div>
+    <p style="font-size:0.6em;color:#6b7280;margin-top:0.2em;">Основатель · Product Money Factory</p>
+    <div class="divider" style="margin:0.8em 0;"></div>
+    <div class="contact-links" style="color:#6b7280;">
+      💬 Telegram: @rudometkin<br>
+      🌐 rud-ai.ru<br>
+      📧 hello@rud-ai.ru
+    </div>
+    <p style="margin-top:1.2em;font-size:0.6em;">
+      <strong style="color:#2563eb;">Попробовать бесплатно:</strong>
+      <span style="color:#2563eb;">lookbook.rud-ai.ru →</span>
+    </p>
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · contact · standard</div>
+</section>
+
+<!-- ======================================================
+     SECTION 4 — DARK MODE макеты
+     ====================================================== -->
+<section>
+  <div class="section-intro">
+    <div class="chapter-num">04</div>
+    <h2>Dark Mode</h2>
+    <p>Технические и продуктовые презентации</p>
+  </div>
+</section>
+
+<!-- DARK: Title minimal -->
+<section class="s-dark">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;padding:0;">
+    <div class="tag" style="background:rgba(0,255,135,0.1);color:#00ff87;border:1px solid rgba(0,255,135,0.25);">GEN Studio · 2026</div>
+    <h1 style="text-shadow:0 0 40px rgba(0,255,135,0.25);">Мультимодальная<br>AI-генерация</h1>
+    <div class="divider" style="background:#00ff87;margin:0.5em 0;"></div>
+    <p style="color:#94a3b8;font-size:0.65em;">10+ моделей · Фото · Видео · Анимация</p>
+  </div>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · title · minimal</div>
+</section>
+
+<!-- DARK: Big number -->
+<section class="s-dark">
+  <h2>Производительность</h2>
+  <div class="divider" style="background:#00ff87;"></div>
+  <div class="kpi-grid" style="margin-top:0.5em;">
+    <div class="kpi-item">
+      <div class="big-num" style="font-size:3em;color:#00ff87;">10+</div>
+      <div class="big-num-label" style="color:#94a3b8;">AI-моделей</div>
+    </div>
+    <div class="kpi-item">
+      <div class="big-num" style="font-size:3em;color:#00ff87;">8с</div>
+      <div class="big-num-label" style="color:#94a3b8;">среднее время</div>
+    </div>
+    <div class="kpi-item">
+      <div class="big-num" style="font-size:3em;color:#00ff87;">99.9%</div>
+      <div class="big-num-label" style="color:#94a3b8;">uptime</div>
+    </div>
+  </div>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · big-number · kpi-grid · standard</div>
+</section>
+
+<!-- DARK: Bullets standard -->
+<section class="s-dark">
+  <h2>Возможности платформы</h2>
+  <div class="divider" style="background:#00ff87;"></div>
+  <ul style="font-size:0.75em;">
+    <li><strong style="color:#00ff87;">Flux Kontext</strong> — самая точная передача деталей</li>
+    <li><strong style="color:#00ff87;">Ideogram V3</strong> — текст на изображениях без ошибок</li>
+    <li><strong style="color:#00ff87;">Kling 2.6</strong> — видео до 10 секунд из фото</li>
+    <li><strong style="color:#00ff87;">Seedream 3.0</strong> — азиатские стили и аниме</li>
+    <li><strong style="color:#00ff87;">GPT-4o Image</strong> — понимание контекста промпта</li>
+  </ul>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · bullets · standard</div>
+</section>
+
+<!-- DARK: Comparison -->
+<section class="s-dark">
+  <h2>Сравнение планов</h2>
+  <div class="slide-cols" style="margin-top:0.3em;">
+    <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:0.8em 1em;">
+      <h3 style="color:#94a3b8;font-size:0.65em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5em;">Free</h3>
+      <ul style="font-size:0.65em;color:#f1f5f9;">
+        <li>5 генераций в день</li>
+        <li>3 модели доступны</li>
+        <li>720p разрешение</li>
+        <li style="opacity:0.35;">Без watermark — нет</li>
+      </ul>
+    </div>
+    <div style="background:#1e293b;border:1px solid rgba(0,255,135,0.4);border-radius:8px;padding:0.8em 1em;box-shadow:0 0 20px rgba(0,255,135,0.08);">
+      <h3 style="color:#00ff87;font-size:0.65em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5em;">Pro · 990₽/мес</h3>
+      <ul style="font-size:0.65em;color:#f1f5f9;">
+        <li><strong>Без лимитов</strong></li>
+        <li><strong>Все 10+ моделей</strong></li>
+        <li><strong>4K разрешение</strong></li>
+        <li><strong style="color:#00ff87;">Без watermark</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · comparison · standard</div>
+</section>
+
+<!-- DARK: Quote -->
+<section class="s-dark">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+    <div style="font-size:3.5em;color:#00ff87;line-height:0.8;margin-bottom:0.2em;">&ldquo;</div>
+    <blockquote style="font-size:1.05em;font-style:italic;line-height:1.4;border-left:5px solid #00ff87;padding-left:1em;margin:0;color:#f1f5f9;">
+      GEN Studio — единственный инструмент, где я могу сравнить результаты 5 моделей за одну сессию.
+    </blockquote>
+    <p style="font-size:0.5em;color:#94a3b8;margin-top:0.8em;font-style:normal;font-weight:600;">— Дизайнер, пользователь Pro-плана</p>
+  </div>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · quote · minimal</div>
+</section>
+
+<!-- DARK: Contact -->
+<section class="s-dark">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+    <div class="tag" style="background:rgba(0,255,135,0.1);color:#00ff87;border:1px solid rgba(0,255,135,0.25);">Начать сейчас</div>
+    <div class="contact-name" style="color:#00ff87;">Егор Рудометкин</div>
+    <p style="font-size:0.55em;color:#94a3b8;margin-top:0.2em;">Основатель · GEN Studio</p>
+    <div class="divider" style="background:#00ff87;margin:0.8em 0;"></div>
+    <div class="contact-links" style="color:#94a3b8;">
+      💬 @rudometkin<br>
+      🌐 gen.rud-ai.ru<br>
+      📧 hello@rud-ai.ru
+    </div>
+  </div>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · contact</div>
+</section>
+
+<!-- ======================================================
+     SECTION 5 — NEOBRUTALISM макеты
+     ====================================================== -->
+<section>
+  <div class="section-intro">
+    <div class="chapter-num">05</div>
+    <h2>Neobrutalism</h2>
+    <p>Конференции · Bold выступления · Стартапы</p>
+  </div>
+</section>
+
+<!-- NEO: Title -->
+<section class="s-neo">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;padding:0;">
+    <div class="tag" style="background:#111;color:#fff;border-radius:0;font-size:0.45em;">РЫЧАГИ · 2026</div>
+    <h1 style="font-size:2.8em;">КАК МЫ<br>АВТОМАТИЗИРОВАЛИ<br>ВСЁ</h1>
+    <div class="divider" style="background:#ff6b00;height:5px;width:80px;margin:0.5em 0;"></div>
+    <p style="color:#555;font-size:0.7em;">Инструменты которые работают пока вы спите</p>
+  </div>
+  <div class="slide-label" style="color:#ff6b00;background:rgba(255,107,0,0.08);">NEO · title · minimal</div>
+</section>
+
+<!-- NEO: Big number minimal -->
+<section class="s-neo">
+  <h2>ОДНА ЦИФРА</h2>
+  <div class="divider" style="background:#ff6b00;height:5px;width:80px;"></div>
+  <div class="big-num" style="color:#ff6b00;-webkit-text-stroke:1.5px #111;font-size:7em;">98%</div>
+  <p class="big-num-label" style="color:#555;font-size:0.5em;">задач автоматизировано</p>
+  <div class="slide-label" style="color:#ff6b00;background:rgba(255,107,0,0.08);">NEO · big-number · minimal</div>
+</section>
+
+<!-- NEO: Bullets standard -->
+<section class="s-neo">
+  <h2>ЧТО МЫ АВТОМАТИЗИРОВАЛИ</h2>
+  <div class="divider" style="background:#ff6b00;height:5px;width:80px;"></div>
+  <ul style="font-size:0.75em;">
+    <li><strong style="color:#ff6b00;">Ежедневные отчёты</strong> — собираются сами в 8:00</li>
+    <li><strong style="color:#ff6b00;">Публикация контента</strong> — 5 каналов одновременно</li>
+    <li><strong style="color:#ff6b00;">CRM-задачи</strong> — триггеры по действиям</li>
+    <li><strong style="color:#ff6b00;">Деплой на прод</strong> — один git push</li>
+  </ul>
+  <div class="slide-label" style="color:#ff6b00;background:rgba(255,107,0,0.08);">NEO · bullets · standard</div>
+</section>
+
+<!-- NEO: Steps dense -->
+<section class="s-neo">
+  <h2>КАК ВНЕДРИТЬ ЗА НЕДЕЛЮ</h2>
+  <ol class="steps" style="font-size:0.7em;">
+    <li>
+      <div>
+        <strong>День 1–2: Аудит процессов</strong><br>
+        <span style="color:#555;">Карта всех повторяющихся задач. Где теряется время.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>День 3–4: n8n воркфлоу</strong><br>
+        <span style="color:#555;">Собрать первые 3 автоматизации. Проверить на тестовых данных.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>День 5: Claude Code скиллы</strong><br>
+        <span style="color:#555;">Упаковать инструкции AI в переиспользуемые блоки.</span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>День 7: Запуск и мониторинг</strong><br>
+        <span style="color:#555;">Алерты. Логи. Первые результаты.</span>
+      </div>
+    </li>
+  </ol>
+  <div class="slide-label" style="color:#ff6b00;background:rgba(255,107,0,0.08);">NEO · steps · dense</div>
+</section>
+
+<!-- NEO: Quote -->
+<section class="s-neo">
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+    <div style="font-size:5em;color:#ff6b00;line-height:0.8;margin-bottom:0.2em;font-family:'Bebas Neue',sans-serif;">&ldquo;</div>
+    <blockquote style="font-size:1.2em;font-style:italic;line-height:1.4;border-left:5px solid #ff6b00;padding-left:1em;margin:0;color:#111;">
+      Если задачу можно автоматизировать — её нужно автоматизировать. Без исключений.
+    </blockquote>
+    <p style="font-size:0.5em;color:#555;margin-top:0.8em;font-style:normal;font-weight:700;">— ЕГОР РУДОМЕТКИН</p>
+  </div>
+  <div class="slide-label" style="color:#ff6b00;background:rgba(255,107,0,0.08);">NEO · quote · minimal</div>
+</section>
+
+<!-- NEO: Comparison -->
+<section class="s-neo">
+  <h2>РУЧНОЙ VS АВТОМАТ</h2>
+  <div class="slide-cols" style="margin-top:0.4em;">
+    <div style="background:#fff;border:3px solid #111;box-shadow:4px 6px 0 #111;padding:0.8em 1em;">
+      <h3 style="color:#555;font-family:'Bebas Neue',sans-serif;font-size:0.85em;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.4em;">Ручной режим</h3>
+      <ul style="font-size:0.65em;">
+        <li>3 часа на отчёты</li>
+        <li>Ошибки в данных</li>
+        <li>Работа в выходные</li>
+        <li>Выгорание</li>
+      </ul>
+    </div>
+    <div style="background:#ff6b00;border:3px solid #111;box-shadow:4px 6px 0 #111;padding:0.8em 1em;">
+      <h3 style="color:#fff;font-family:'Bebas Neue',sans-serif;font-size:0.85em;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.4em;">С РЫЧАГАМИ</h3>
+      <ul style="font-size:0.65em;color:#fff;">
+        <li><strong>5 минут</strong> на отчёты</li>
+        <li><strong>0 ошибок</strong> — AI проверяет</li>
+        <li><strong>Выходные свободны</strong></li>
+        <li><strong>Масштаб без стресса</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-label" style="color:#ff6b00;background:rgba(255,107,0,0.08);">NEO · comparison · standard</div>
+</section>
+
+<!-- ======================================================
+     SECTION 6 — ДИАГРАММЫ И ГРАФИКИ
+     ====================================================== -->
+<section>
+  <div class="section-intro">
+    <div class="chapter-num">06</div>
+    <h2>Диаграммы &amp; Графики</h2>
+    <p>Mermaid.js и Chart.js в каждом стиле</p>
+  </div>
+</section>
+
+<!-- Mermaid diagram: MIN style -->
+<section class="s-min">
+  <h2>Архитектура системы</h2>
+  <div class="divider"></div>
+  <div class="mermaid" style="font-size:0.65em;">
+graph LR
+    A[👤 Пользователь] -->|фото + стиль| B[🌐 Nginx]
+    B --> C[⚡ Node.js API]
+    C -->|промпт| D[🤖 Claude API]
+    C -->|генерация| E[🎨 kie.ai]
+    E -->|изображение| F[💾 Storage]
+    F --> A
+    style D fill:#2563eb,color:#fff,stroke:none
+    style E fill:#2563eb,color:#fff,stroke:none
+  </div>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · diagram · Mermaid.js flowchart</div>
+</section>
+
+<!-- Mermaid diagram: DARK style -->
+<section class="s-dark">
+  <h2>Флоу генерации</h2>
+  <div class="divider" style="background:#00ff87;"></div>
+  <div class="mermaid" style="font-size:0.65em;">
+sequenceDiagram
+    participant U as 👤 Пользователь
+    participant A as 🌐 API
+    participant K as 🎨 kie.ai
+    U->>A: POST /generate
+    A->>K: prompt + style
+    K-->>A: image URL (8-15s)
+    A-->>U: result + download link
+  </div>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · diagram · Mermaid.js sequence</div>
+</section>
+
+<!-- Chart.js: MIN style -->
+<section class="s-min">
+  <h2>Рост пользователей</h2>
+  <div class="divider"></div>
+  <canvas id="chart-min" style="max-height:440px;"></canvas>
+  <div class="slide-label" style="color:#2563eb;background:rgba(37,99,235,0.08);">MIN · chart · Chart.js line</div>
+</section>
+
+<!-- Chart.js: DARK style -->
+<section class="s-dark">
+  <h2>MRR по месяцам</h2>
+  <div class="divider" style="background:#00ff87;"></div>
+  <canvas id="chart-dark" style="max-height:440px;"></canvas>
+  <div class="slide-label" style="color:#00ff87;background:rgba(0,255,135,0.08);">DARK · chart · Chart.js bar</div>
+</section>
+
+<!-- Chart.js: NEO style pie -->
+<section class="s-neo">
+  <h2>РАСПРЕДЕЛЕНИЕ МОДЕЛЕЙ</h2>
+  <div class="divider" style="background:#ff6b00;height:5px;width:80px;"></div>
+  <div class="slide-cols" style="align-items:center;">
+    <canvas id="chart-neo" style="max-height:360px;"></canvas>
+    <ul style="font-size:0.6em;">
+      <li><strong style="color:#ff6b00;">Flux Kontext</strong> — 34%</li>
+      <li><strong style="color:#111;">Ideogram V3</strong> — 26%</li>
+      <li><strong>Kling 2.6</strong> — 18%</li>
+      <li>Seedream — 12%</li>
+      <li>GPT-4o — 10%</li>
+    </ul>
+  </div>
+  <div class="slide-label" style="color:#ff6b00;background:rgba(255,107,0,0.08);">NEO · chart · Chart.js pie</div>
+</section>
+
+<!-- ======================================================
+     ФИНАЛ — как заказать
+     ====================================================== -->
+<section>
+  <div class="gallery-cover">
+    <div style="font-size:0.45em;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1em;">Готово к работе</div>
+    <h1>Скажи Claude<br><span class="accent-word">что</span> нужно</h1>
+    <div style="margin-top:1.2em;font-size:0.55em;color:rgba(255,255,255,0.5);line-height:2.2;">
+      <span style="color:#00ff87;font-weight:700;">«Сделай питч-дек для LookBook, Dark Mode, 12 слайдов»</span><br>
+      <span style="color:#00ff87;font-weight:700;">«Упакуй это исследование в слайды, Minimalism»</span><br>
+      <span style="color:#00ff87;font-weight:700;">«Слайд 5, поменяй заголовок на "Рост 340%"»</span><br>
+      <span style="color:#00ff87;font-weight:700;">«Добавь mermaid-диаграмму архитектуры после слайда 7»</span><br>
+      <span style="color:rgba(255,255,255,0.3);">«Поменяй стиль на Neobrutalism»</span><br>
+      <span style="color:rgba(255,255,255,0.3);">«Насыщенность → minimal»</span>
+    </div>
+    <p class="nav-hint" style="margin-top:1.5em;">Esc для обзора всей галереи</p>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    progress: true,
+    width: 1280,
+    height: 720,
+    margin: 0.0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'slide',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'fade',
+    controls: true,
+    controlsTutorial: false,
+    overview: true,
+    center: false,
+    touch: true,
+    keyboard: true,
+  });
+
+  // Mermaid
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'default',
+    securityLevel: 'loose',
+    themeVariables: { primaryColor: '#2563eb', primaryTextColor: '#111', edgeLabelBackground: '#fff' }
+  });
+
+  Reveal.on('ready', () => { mermaid.run(); });
+  Reveal.on('slidechanged', ({ currentSlide }) => {
+    const els = currentSlide.querySelectorAll('.mermaid:not([data-processed])');
+    if (els.length) mermaid.run({ nodes: Array.from(els) });
+  });
+
+  // Chart.js — rendered after Reveal is ready
+  Reveal.on('ready', () => {
+    // MIN line chart
+    new Chart(document.getElementById('chart-min'), {
+      type: 'line',
+      data: {
+        labels: ['Окт', 'Ноя', 'Дек', 'Янв', 'Фев', 'Мар'],
+        datasets: [{
+          label: 'Пользователи',
+          data: [120, 340, 780, 1800, 4200, 12000],
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37,99,235,0.08)',
+          fill: true,
+          tension: 0.4,
+          borderWidth: 3,
+          pointRadius: 6,
+          pointBackgroundColor: '#2563eb'
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#111827', font: { family: 'Inter', size: 13 } } } },
+        scales: {
+          x: { ticks: { color: '#6b7280' }, grid: { color: '#e5e7eb' } },
+          y: { ticks: { color: '#6b7280' }, grid: { color: '#e5e7eb' } }
+        }
+      }
+    });
+
+    // DARK bar chart
+    new Chart(document.getElementById('chart-dark'), {
+      type: 'bar',
+      data: {
+        labels: ['Окт', 'Ноя', 'Дек', 'Янв', 'Фев', 'Мар'],
+        datasets: [{
+          label: 'MRR (₽)',
+          data: [42000, 98000, 178000, 260000, 342000, 420000],
+          backgroundColor: 'rgba(0,255,135,0.7)',
+          borderColor: '#00ff87',
+          borderWidth: 1,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#f1f5f9', font: { family: 'Inter', size: 13 } } } },
+        scales: {
+          x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(51,65,85,0.6)' } },
+          y: { ticks: { color: '#94a3b8', callback: v => (v/1000)+'к₽' }, grid: { color: 'rgba(51,65,85,0.6)' } }
+        }
+      }
+    });
+
+    // NEO pie chart
+    new Chart(document.getElementById('chart-neo'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Flux Kontext', 'Ideogram V3', 'Kling 2.6', 'Seedream', 'GPT-4o'],
+        datasets: [{
+          data: [34, 26, 18, 12, 10],
+          backgroundColor: ['#ff6b00', '#111111', '#ffb347', '#ffd700', '#888'],
+          borderColor: '#fffbeb',
+          borderWidth: 3
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}%` } }
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>

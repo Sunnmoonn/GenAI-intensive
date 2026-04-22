@@ -1,0 +1,59 @@
+/* ============================================================
+   STYLE: Minimalism 2.0
+   Использовать для: питч-деки, инвесторы, деловые презентации
+   Палитра: белый фон, синий акцент, много пространства
+   ============================================================ */
+:root {
+  --bg:           #ffffff;
+  --surface:      #f8f9fc;
+  --text:         #111827;
+  --text-muted:   #6b7280;
+  --heading:      #111827;
+  --accent:       #2563eb;
+  --accent-light: rgba(37, 99, 235, 0.10);
+  --accent-text:  #ffffff;
+  --border-color: #e5e7eb;
+  --radius:       8px;
+  --font-body:    'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-display: 'Bebas Neue', 'Montserrat', sans-serif;
+}
+
+.reveal {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Title slide: крупный заголовок, тонкая линия акцента сверху */
+.reveal .slides section[data-layout="title"] {
+  border-top: 5px solid var(--accent);
+}
+
+/* Чистые разделители */
+.reveal h2 { border-bottom: none; }
+
+/* Маркированный список с тире */
+.reveal ul {
+  list-style: none;
+  padding-left: 0;
+}
+.reveal ul li::before {
+  content: '—';
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+
+/* Блок с выделением на белом */
+.highlight {
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  padding: 0.7em 1em;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* Числа крупно */
+.big-num { color: var(--accent); }
+
+/* Ссылки */
+.reveal a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }

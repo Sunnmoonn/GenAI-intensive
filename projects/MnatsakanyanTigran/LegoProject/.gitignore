@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual env
+venv/
+.env/
+.venv/
+
+# PyCharm
+.idea/
+
+# Mac
+.DS_Store
+
+# Training / inference artifacts
+runs/
+weights/
+*.pt
+*.onnx
+*.engine
+
+# Data
+data/
+datasets/
+*.zip
+*.mp4
+*.avi
+*.mov
+
+# Logs
+*.log
+
+
+# Images
+*.jpg
+*.jpeg
+*.png
+
+# YOLO dataset
+images/
+labels/
+train/
+val/
+
+# Label Studio exports
+project-*/
+
+# Random folders
+runsbad/
+imagess/
+
+# Mac + cache
+.DS_Store
+__pycache__/

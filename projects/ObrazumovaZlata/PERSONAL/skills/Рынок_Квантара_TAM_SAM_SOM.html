@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1600">
+<title>Квантара — Анализ рыночной возможности</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Inter',sans-serif;
+  background:#ffffff;
+  display:flex; justify-content:center; align-items:flex-start;
+  min-height:100vh; padding:32px;
+}
+
+/* ── SLIDE ── */
+.slide {
+  width:1600px;
+  background:#ffffff;
+  border:1px solid #dde4ed;
+  box-shadow:0 6px 32px rgba(0,0,0,.12);
+  display:flex; flex-direction:column;
+  position:relative;
+}
+.slide::before {
+  content:''; position:absolute;
+  left:0; top:78px; bottom:0; width:4px;
+  background:linear-gradient(180deg,#071d3e 0%,#1a5fad 50%,#4494d4 100%);
+  z-index:9;
+}
+
+/* ── HEADER ── */
+.hdr {
+  height:78px; flex-shrink:0;
+  background:#071d3e;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 52px;
+  border-bottom:3px solid #1a5fad;
+}
+.hdr-title { color:#fff; font-size:18px; font-weight:800; letter-spacing:.04em; }
+.hdr-sub   { color:#5d85b0; font-size:10.5px; margin-top:4px; letter-spacing:.03em; }
+.hdr-badge {
+  border:1px solid rgba(74,148,212,.65); background:rgba(26,95,173,.35);
+  color:#9fc8ee; font-size:9px; font-weight:800;
+  letter-spacing:.16em; text-transform:uppercase;
+  padding:7px 18px; border-radius:2px; white-space:nowrap;
+}
+
+/* ── INSIGHT BAR ── */
+.ins {
+  height:38px; flex-shrink:0;
+  background:#1a5fad;
+  display:flex; align-items:center; padding:0 52px; gap:10px;
+}
+.ins-dot { width:5px; height:5px; background:#90c0f0; border-radius:50%; flex-shrink:0; }
+.ins span { color:#d8eeff; font-size:11.5px; font-weight:500; font-style:italic; }
+
+/* ── BODY ── */
+.body { display:flex; }
+
+.lcol {
+  width:800px; flex-shrink:0;
+  padding:18px 38px 18px 52px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.vdiv {
+  flex-shrink:0; width:1px; margin:14px 0;
+  background:linear-gradient(180deg,transparent,#c2cdd8 18%,#c2cdd8 82%,transparent);
+}
+.rcol {
+  flex:1; padding:18px 52px 18px 34px;
+  display:flex; flex-direction:column; gap:12px;
+}
+
+/* ── SECTION LABEL ── */
+.slabel {
+  font-size:8px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:#7a92a8; padding-bottom:7px; border-bottom:1.5px solid #071d3e; flex-shrink:0;
+}
+
+/* ── INLINE CITATION ── */
+.cite {
+  color:#1a5fad; font-size:7px; font-weight:800;
+  text-decoration:none; vertical-align:super; line-height:0;
+  white-space:nowrap;
+}
+.cite:hover { text-decoration:underline; color:#0e3c9e; }
+
+/* ── FUNNEL ── */
+.funnel { display:flex; flex-direction:column; gap:5px; }
+.frow   { display:flex; align-items:stretch; height:56px; }
+.fblock {
+  display:flex; align-items:center; padding:0 14px; gap:8px; flex-shrink:0;
+}
+.fblock.tam { width:360px; background:#071d3e; border-radius:2px 0 0 2px; }
+.fblock.sam { width:288px; background:#1a5fad;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%); }
+.fblock.som { width:208px; background:#4494d4;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%); }
+.ftag  { font-size:7.5px; font-weight:800; letter-spacing:.14em; color:rgba(255,255,255,.4); flex-shrink:0; }
+.fname { font-size:11px; font-weight:600; color:#fff; line-height:1.25; }
+.fnums {
+  flex:1; display:flex; flex-direction:column; justify-content:center;
+  padding-left:16px; overflow:hidden;
+}
+.fbig { font-size:24px; font-weight:900; letter-spacing:-.03em; line-height:1; }
+.fbig.tam { color:#071d3e; }
+.fbig.sam { color:#1a5fad; }
+.fbig.som { color:#2a7ab8; }
+.fsmall { font-size:9px; color:#7a92a8; margin-top:3px; line-height:1.55; }
+
+/* ── SEGMENT BARS ── */
+.seg-head { font-size:8px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#8098b4; margin-bottom:7px; }
+.srow { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+.srow:last-child { margin-bottom:0; }
+.sname { font-size:10px; color:#2c3a4a; font-weight:500; flex:0 0 228px; }
+.strk  { flex:1; height:5px; background:#dde5ef; border-radius:3px; overflow:hidden; min-width:0; }
+.sfill { height:100%; border-radius:3px; }
+.sval  { font-size:10px; font-weight:700; flex:0 0 68px; text-align:right; }
+
+/* ── COMPETITOR TABLE ── */
+.comp-head { font-size:8px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#8098b4; margin-bottom:7px; }
+table.ct { width:100%; border-collapse:collapse; }
+table.ct thead tr { border-bottom:1.5px solid #c8d4e0; }
+table.ct thead th {
+  font-size:7.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:#8098b4; padding:4px 5px; text-align:center; white-space:nowrap;
+}
+table.ct thead th:first-child { text-align:left; }
+table.ct tr.grp-sep td {
+  padding:5px 5px 2px; font-size:7.5px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; color:#9aa8b8;
+}
+table.ct tbody tr { border-bottom:1px solid #edf1f7; }
+table.ct tbody tr:last-child { border-bottom:none; }
+table.ct tbody td { padding:5px 5px; vertical-align:middle; text-align:center; font-size:9.5px; }
+table.ct tbody td:first-child { text-align:left; }
+table.ct tbody tr.our { background:#eef5ff; }
+table.ct tbody tr.our td { border-bottom-color:#c8dcf8; }
+.ct-name       { font-weight:700; color:#071d3e; font-size:10px; }
+.ct-name small { display:block; font-weight:400; font-size:7.5px; color:#8098b4; margin-top:1px; }
+.ok  { display:inline-block; background:#e6f5ee; color:#166d3a; border-radius:3px; padding:1px 6px; font-size:7.5px; font-weight:700; }
+.no  { display:inline-block; background:#fdecea; color:#b03020; border-radius:3px; padding:1px 6px; font-size:7.5px; font-weight:700; }
+.pt  { display:inline-block; background:#fff7e0; color:#8a5c00; border-radius:3px; padding:1px 6px; font-size:7.5px; font-weight:700; }
+.rf-yes { display:inline-block; background:#e6f5ee; color:#166d3a; border-radius:3px; padding:1px 7px; font-size:7.5px; font-weight:700; white-space:nowrap; }
+.rf-no  { display:inline-block; background:#fdecea; color:#b03020; border-radius:3px; padding:1px 7px; font-size:7.5px; font-weight:700; white-space:nowrap; }
+.rf-dev { display:inline-block; background:#e6eeff; color:#1a4dad; border-radius:3px; padding:1px 7px; font-size:7.5px; font-weight:700; white-space:nowrap; }
+.price { font-size:9px; color:#4a5868; font-weight:600; white-space:nowrap; }
+
+/* ── BAR CHART ── */
+.chart-flex { display:flex; gap:10px; align-items:flex-end; }
+.chart-bars {
+  flex:1; min-width:0;
+  display:flex; align-items:flex-end; gap:7px;
+  height:152px; padding-bottom:26px;
+  border-bottom:1.5px solid #b8c6d4; position:relative;
+}
+.gline { position:absolute; left:0; right:0; border-top:1px dashed #dde5ef; pointer-events:none; }
+.bgrp  { flex:1; display:flex; flex-direction:column; align-items:center; position:relative; min-width:0; }
+.brect { width:100%; border-radius:3px 3px 0 0; display:flex; align-items:flex-start; justify-content:center; padding-top:4px; }
+.brect.hist { background:#071d3e; }
+.brect.proj { background:linear-gradient(180deg,#4494d4 0%,#1a5fad 100%); }
+.brect.hi   { background:linear-gradient(180deg,#60b0f0 0%,#0e3670 100%); outline:2px solid #4494d4; outline-offset:-2px; }
+.bval { font-size:8px; font-weight:700; color:#fff; line-height:1; }
+.byr  { position:absolute; bottom:-19px; font-size:7.5px; color:#8098b4; font-weight:500; white-space:nowrap; }
+.byr.p { color:#1a5fad; font-weight:700; }
+.cagr-badge {
+  flex-shrink:0; width:68px;
+  background:#e4f0fc; border:1.5px solid #4494d4; border-radius:6px;
+  padding:8px 8px 10px; text-align:center; margin-bottom:26px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.cagr-n { font-size:19px; font-weight:900; color:#1a5fad; line-height:1; }
+.cagr-l { font-size:6.5px; font-weight:700; color:#5d85b0; letter-spacing:.1em; text-transform:uppercase; margin-top:3px; }
+.cagr-s { font-size:7px; color:#8098b4; margin-top:2px; }
+.y-axis {
+  flex-shrink:0; width:20px;
+  display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end;
+  padding-bottom:26px; padding-top:4px; height:152px;
+}
+.yl { font-size:7px; color:#a8bac8; font-weight:500; }
+.chart-legend { display:flex; gap:14px; margin-top:28px; align-items:center; }
+.li  { display:flex; align-items:center; gap:5px; font-size:8.5px; color:#8098b4; white-space:nowrap; }
+.lsq { width:9px; height:9px; border-radius:2px; flex-shrink:0; }
+
+/* ── TAILWINDS ── */
+.tws { }
+.tw  { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid #edf1f7; }
+.tw:last-child { border-bottom:none; padding-bottom:0; }
+.tw-ico  { width:28px; height:28px; flex-shrink:0; background:#071d3e; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:13px; }
+.tw-body { flex:1; min-width:0; }
+.tw-h    { font-size:11px; font-weight:700; color:#071d3e; margin-bottom:2px; line-height:1.25; }
+.tw-s    { font-size:9px; color:#637080; line-height:1.4; }
+.tw-n    { font-size:14px; font-weight:800; flex:0 0 100px; text-align:right; line-height:1.3; }
+
+/* ══════════════════════════════════════
+   SOURCES SECTION
+══════════════════════════════════════ */
+.sources {
+  background:#f6f8fc;
+  border-top:2px solid #1a5fad;
+  padding:16px 52px 18px 56px;
+  flex-shrink:0;
+}
+.src-title {
+  font-size:8px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  color:#1a5fad; margin-bottom:12px;
+  display:flex; align-items:center; gap:8px;
+}
+.src-title::after { content:''; flex:1; height:1px; background:#c8d4e4; }
+
+.src-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px 28px;
+}
+.src-item {
+  display:flex; flex-direction:column; gap:2px;
+  scroll-margin-top:16px;
+  border-left:2px solid transparent;
+  padding-left:7px;
+  transition:border-color .2s;
+}
+.src-item:target {
+  border-left-color:#1a5fad;
+  background:rgba(26,95,173,.04);
+  border-radius:0 4px 4px 0;
+}
+.src-item a.src-link {
+  font-size:8.5px; color:#1a5fad; font-weight:700;
+  text-decoration:none; line-height:1.45;
+  display:flex; gap:4px; align-items:baseline;
+}
+.src-item a.src-link:hover { text-decoration:underline; }
+.src-num {
+  font-size:7px; font-weight:800; color:#fff;
+  background:#1a5fad; border-radius:2px;
+  padding:1px 4px; flex-shrink:0; line-height:1.4;
+}
+.src-desc {
+  font-size:7.5px; color:#7a8ea4; line-height:1.5;
+  padding-left:18px;
+}
+
+/* ── FOOTER ── */
+.ftr {
+  height:36px; flex-shrink:0;
+  background:#e6eaf0; border-top:1px solid #ccd4de;
+  display:flex; align-items:center; padding:0 52px; justify-content:space-between; gap:20px;
+}
+.ftr-brand { font-size:13px; font-weight:900; color:#071d3e; letter-spacing:.07em; flex-shrink:0; }
+.ftr-conf  { font-size:8px; color:#8098b4; letter-spacing:.06em; white-space:nowrap; }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- ══ HEADER ══ -->
+  <div class="hdr">
+    <div>
+      <div class="hdr-title">КВАНТАРА &nbsp;·&nbsp; Анализ рыночной возможности</div>
+      <div class="hdr-sub">TAM / SAM / SOM &nbsp;·&nbsp; Конкурентный ландшафт &nbsp;·&nbsp; Россия и глобальный рынок ELN + LIMS &nbsp;·&nbsp; апрель 2026</div>
+    </div>
+    <div class="hdr-badge">Рыночная возможность</div>
+  </div>
+
+  <!-- ══ INSIGHT BAR ══ -->
+  <div class="ins">
+    <div class="ins-dot"></div>
+    <span>Российский рынок управления лабораторными данными (~₽1–3 млрд/год) лишился всех зарубежных игроков после санкций 2024 г.<a href="#src-14" class="cite" style="color:#a0d0ff;">[14]</a> — отечественного полнофункционального решения не существует</span>
+  </div>
+
+  <!-- ══ BODY ══ -->
+  <div class="body">
+
+    <!-- ═══ LEFT ═══ -->
+    <div class="lcol">
+
+      <div class="slabel">Структура рыночной возможности</div>
+
+      <!-- FUNNEL -->
+      <div class="funnel">
+
+        <!-- TAM -->
+        <div class="frow">
+          <div class="fblock tam">
+            <span class="ftag">TAM</span>
+            <span class="fname">Глобальный рынок ELN + LIMS</span>
+          </div>
+          <div class="fnums">
+            <div class="fbig tam">₽320 млрд<a href="#src-1" class="cite">[1–4]</a></div>
+            <div class="fsmall">
+              $3,5 млрд<a href="#src-1" class="cite">[1,2]</a> · 2025 · CAGR 8–12%<a href="#src-1" class="cite">[1,2]</a> &nbsp;→&nbsp; $5,2–6,5B к 2030<a href="#src-1" class="cite">[1,6]</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAM -->
+        <div class="frow">
+          <div class="fblock sam">
+            <span class="ftag">SAM</span>
+            <span class="fname">Россия · НИИ, вузы, фарма, ЦКП</span>
+          </div>
+          <div class="fnums">
+            <div class="fbig sam">₽1–3 млрд<a href="#src-7" class="cite">[7,9,12]</a></div>
+            <div class="fsmall">
+              ~3 200 адресуемых орг.<a href="#src-7" class="cite">[7,9,12]</a> · рост &gt;15%/год за счёт импортозамещения<a href="#src-13" class="cite">[13,14]</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOM -->
+        <div class="frow">
+          <div class="fblock som">
+            <span class="ftag">SOM</span>
+            <span class="fname">Россия · 3–5 лет</span>
+          </div>
+          <div class="fnums">
+            <div class="fbig som">₽100–150 млн</div>
+            <div class="fsmall">
+              140–200 орг.<a href="#src-7" class="cite">[7,9]</a> · 5 сегментов · 3–5% пенетрации SAM<a href="#src-18" class="cite">[18]</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /funnel -->
+
+      <!-- SEGMENT BARS -->
+      <div class="segs">
+        <div class="seg-head">Разбивка SOM по сегментам &nbsp;·&nbsp; целевой ARR (₽ млн / год)</div>
+        <div class="srow">
+          <span class="sname">Фарма и биотех (GxP compliance)</span>
+          <div class="strk"><div class="sfill" style="width:75%;background:#071d3e;"></div></div>
+          <span class="sval" style="color:#071d3e;">40–60 M<a href="#src-18" class="cite">[18]</a></span>
+        </div>
+        <div class="srow">
+          <span class="sname">НИИ и университеты</span>
+          <div class="strk"><div class="sfill" style="width:34%;background:#1a5fad;"></div></div>
+          <span class="sval" style="color:#1a5fad;">17–24 M<a href="#src-7" class="cite">[7]</a></span>
+        </div>
+        <div class="srow">
+          <span class="sname">ЦКП (центры коллективного пользования)</span>
+          <div class="strk"><div class="sfill" style="width:27%;background:#1a5fad;"></div></div>
+          <span class="sval" style="color:#1a5fad;">12–20 M<a href="#src-12" class="cite">[12]</a></span>
+        </div>
+        <div class="srow">
+          <span class="sname">Промышленный R&amp;D (нефтехим, матвед)</span>
+          <div class="strk"><div class="sfill" style="width:20%;background:#4494d4;"></div></div>
+          <span class="sval" style="color:#4494d4;">10–15 M</span>
+        </div>
+        <div class="srow">
+          <span class="sname">Hardware / IT R&amp;D (микроэлектроника)</span>
+          <div class="strk"><div class="sfill" style="width:18%;background:#4494d4;"></div></div>
+          <span class="sval" style="color:#4494d4;">10–14 M</span>
+        </div>
+      </div><!-- /segs -->
+
+      <!-- COMPETITOR TABLE -->
+      <div class="comp">
+        <div class="slabel" style="margin-bottom:10px;">Конкурентный ландшафт</div>
+        <table class="ct">
+          <thead>
+            <tr>
+              <th style="text-align:left;width:170px;">Платформа</th>
+              <th>ELN</th>
+              <th>LIMS</th>
+              <th>AI / RAG</th>
+              <th>Упр. проектами</th>
+              <th>Доступность РФ</th>
+              <th>Цена / год</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="grp-sep">
+              <td colspan="7">— Глобальные лидеры (санкции США с сент. 2024<a href="#src-14" class="cite">[14]</a>, недоступны в РФ)</td>
+            </tr>
+            <tr>
+              <td><span class="ct-name">Benchling<a href="#src-18" class="cite">[18]</a></span><small>US · cloud · biotech-focused</small></td>
+              <td><span class="ok">✓</span></td><td><span class="ok">✓</span></td><td><span class="ok">✓</span></td><td><span class="ok">✓</span></td>
+              <td><span class="rf-no">✗ санкции</span></td>
+              <td><span class="price">$20k+/год<a href="#src-18" class="cite">[18]</a></span></td>
+            </tr>
+            <tr>
+              <td><span class="ct-name">LabWare</span><small>US · on-premise · pharma</small></td>
+              <td><span class="pt">частично</span></td><td><span class="ok">✓</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td>
+              <td><span class="rf-no">✗ санкции</span></td>
+              <td><span class="price">enterprise</span></td>
+            </tr>
+            <tr>
+              <td><span class="ct-name">STARLIMS</span><small>US (Abbott) · enterprise</small></td>
+              <td><span class="no">✗</span></td><td><span class="ok">✓</span></td><td><span class="no">✗</span></td><td><span class="pt">частично</span></td>
+              <td><span class="rf-no">✗ санкции</span></td>
+              <td><span class="price">enterprise</span></td>
+            </tr>
+            <tr>
+              <td><span class="ct-name">Labguru / Cenevo<a href="#src-18" class="cite">[18]</a></span><small>IL · rebrand 2025</small></td>
+              <td><span class="ok">✓</span></td><td><span class="ok">✓</span></td><td><span class="no">✗</span></td><td><span class="pt">частично</span></td>
+              <td><span class="rf-no">✗ санкции</span></td>
+              <td><span class="price">$8k+/год</span></td>
+            </tr>
+            <tr class="grp-sep">
+              <td colspan="7">— Open-source (без поддержки, только ELN<a href="#src-17" class="cite">[17]</a>)</td>
+            </tr>
+            <tr>
+              <td><span class="ct-name">eLabFTW<a href="#src-17" class="cite">[17]</a></span><small>open-source · только ELN</small></td>
+              <td><span class="ok">✓</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td>
+              <td><span class="rf-yes">✓ доступен</span></td>
+              <td><span class="price">бесплатно</span></td>
+            </tr>
+            <tr class="grp-sep">
+              <td colspan="7">— Российские (частичный функционал, нет ELN / AI<a href="#src-15" class="cite">[15,16]</a>)</td>
+            </tr>
+            <tr>
+              <td><span class="ct-name">1С:LIMS<a href="#src-15" class="cite">[15]</a></span><small>РФ · 1С:ERP · 2024</small></td>
+              <td><span class="no">✗</span></td><td><span class="ok">✓</span></td><td><span class="no">✗</span></td><td><span class="pt">частично</span></td>
+              <td><span class="rf-yes">✓ доступен</span></td>
+              <td><span class="price">индивидуально</span></td>
+            </tr>
+            <tr>
+              <td><span class="ct-name">myLab (ЛИКОРИС)<a href="#src-16" class="cite">[16]</a></span><small>РФ · cloud · испытат. лаб.</small></td>
+              <td><span class="no">✗</span></td><td><span class="ok">✓</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td>
+              <td><span class="rf-yes">✓ доступен</span></td>
+              <td><span class="price">индивидуально</span></td>
+            </tr>
+            <tr class="grp-sep">
+              <td colspan="7" style="color:#1a4dad;">— Квантара</td>
+            </tr>
+            <tr class="our">
+              <td><span class="ct-name" style="color:#0e3c9e;">Квантара</span><small style="color:#3a72cc;">РФ · ELN+LIMS+AI · MVP 2026</small></td>
+              <td><span class="ok">✓</span></td><td><span class="ok">✓</span></td><td><span class="ok">✓</span></td><td><span class="ok">✓</span></td>
+              <td><span class="rf-dev">✓ РФ-решение</span></td>
+              <td><span class="price" style="color:#0e3c9e;">$3-5k/год</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div><!-- /comp -->
+
+    </div><!-- /lcol -->
+
+    <div class="vdiv"></div>
+
+    <!-- ═══ RIGHT ═══ -->
+    <div class="rcol">
+
+      <div class="slabel">Динамика глобального рынка ELN + LIMS ($млрд)<a href="#src-1" class="cite" style="margin-left:4px;">[1–3,6]</a></div>
+
+      <!-- BAR CHART -->
+      <div class="chart-section">
+        <div class="chart-flex">
+          <div class="y-axis">
+            <div class="yl">5</div>
+            <div class="yl">4</div>
+            <div class="yl">3</div>
+            <div class="yl">2</div>
+            <div class="yl">1</div>
+            <div class="yl" style="opacity:0;">0</div>
+          </div>
+          <div class="chart-bars">
+            <div class="gline" style="bottom:calc(26px + 24px);"></div>
+            <div class="gline" style="bottom:calc(26px + 48px);"></div>
+            <div class="gline" style="bottom:calc(26px + 71px);"></div>
+            <div class="gline" style="bottom:calc(26px + 95px);"></div>
+            <div class="gline" style="bottom:calc(26px + 119px);"></div>
+            <div class="bgrp"><div class="brect hist" style="height:52px;"><span class="bval">2.2</span></div><span class="byr">2023</span></div>
+            <div class="bgrp"><div class="brect hist" style="height:60px;"><span class="bval">2.5</span></div><span class="byr">2024</span></div>
+            <div class="bgrp"><div class="brect hist" style="height:69px;"><span class="bval">2.9</span></div><span class="byr">2025</span></div>
+            <div class="bgrp"><div class="brect proj" style="height:79px;"><span class="bval">3.3</span></div><span class="byr p">2026E</span></div>
+            <div class="bgrp"><div class="brect proj" style="height:88px;"><span class="bval">3.7</span></div><span class="byr p">2027E</span></div>
+            <div class="bgrp"><div class="brect proj" style="height:102px;"><span class="bval">4.3</span></div><span class="byr p">2028E</span></div>
+            <div class="bgrp"><div class="brect proj" style="height:114px;"><span class="bval">4.8</span></div><span class="byr p">2029E</span></div>
+            <div class="bgrp"><div class="brect hi" style="height:126px;"><span class="bval" style="font-size:9px;font-weight:900;">5.2+</span></div><span class="byr p" style="font-weight:900;">2030E</span></div>
+          </div>
+          <div class="cagr-badge">
+            <div class="cagr-n">8–12%</div>
+            <div class="cagr-l">CAGR</div>
+            <div class="cagr-s">2025–2030</div>
+          </div>
+        </div>
+        <div class="chart-legend">
+          <div class="li"><div class="lsq" style="background:#071d3e;"></div>Факт ($млрд)</div>
+          <div class="li"><div class="lsq" style="background:#4494d4;"></div>Прогноз (E)</div>
+          <div class="li" style="margin-left:auto;font-style:italic;color:#9aafbf;">
+            Источники: <a href="#src-1" class="cite" style="font-style:normal;font-size:8.5px;">[1]</a>
+            <a href="#src-2" class="cite" style="font-style:normal;font-size:8.5px;">[2]</a>
+            <a href="#src-3" class="cite" style="font-style:normal;font-size:8.5px;">[3]</a>
+            <a href="#src-6" class="cite" style="font-style:normal;font-size:8.5px;">[6]</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAILWINDS -->
+      <div class="slabel">Структурные катализаторы роста в России</div>
+      <div class="tws">
+        <div class="tw">
+          <div class="tw-ico">🏛</div>
+          <div class="tw-body">
+            <div class="tw-h">Вакуум после ухода глобальных игроков<a href="#src-14" class="cite">[14]</a></div>
+            <div class="tw-s">С 12 сентября 2024 г. санкции США запретили IT-услуги и облачное корпоративное ПО для РФ — Benchling, LabWare, STARLIMS де-факто недоступны.</div>
+          </div>
+          <div class="tw-n" style="color:#b03020;">0<a href="#src-14" class="cite">[14]</a><br><span style="font-size:9px;font-weight:500;color:#8098b4;">конкурентов</span></div>
+        </div>
+        <div class="tw">
+          <div class="tw-ico">💰</div>
+          <div class="tw-body">
+            <div class="tw-h">Госсубсидии: до 50% стоимости внедрения<a href="#src-19" class="cite">[19]</a></div>
+            <div class="tw-s">Правительство выделило ₽6 млрд на замену иностранного ПО; НИИ и компании могут получить субсидию на внедрение отечественных решений.</div>
+          </div>
+          <div class="tw-n" style="color:#1a5fad;">₽6 млрд<a href="#src-19" class="cite">[19]</a></div>
+        </div>
+        <div class="tw">
+          <div class="tw-ico">📈</div>
+          <div class="tw-body">
+            <div class="tw-h">Рост расходов на НИОКР +14% в 2024 г.<a href="#src-10" class="cite">[10]</a></div>
+            <div class="tw-s">Внутренние затраты на ИР достигли 1,94 трлн руб.<a href="#src-10" class="cite">[10]</a> &nbsp;·&nbsp; 4 125 орг. ведут исследования<a href="#src-7" class="cite">[7]</a> &nbsp;·&nbsp; 382 800 исследователей (ЧЗ)<a href="#src-8" class="cite">[8]</a></div>
+          </div>
+          <div class="tw-n" style="color:#1a5fad;">+14%<a href="#src-10" class="cite">[10]</a><br><span style="font-size:9px;font-weight:500;color:#8098b4;">НИОКР/год</span></div>
+        </div>
+        <div class="tw">
+          <div class="tw-ico">🔬</div>
+          <div class="tw-body">
+            <div class="tw-h">200 новых молодёжных лабораторий<a href="#src-11" class="cite">[11]</a> по нацпроекту</div>
+            <div class="tw-s">Запускаются «с нуля» — нет legacy. &nbsp;1 255 вузов<a href="#src-9" class="cite">[9]</a> &nbsp;·&nbsp; ~500 ЦКП<a href="#src-12" class="cite">[12]</a> в России. Стратегия цифровизации науки до 2030 предписывает переход на отечественное ПО.</div>
+          </div>
+          <div class="tw-n" style="color:#1a5fad;">200<a href="#src-11" class="cite">[11]</a><br><span style="font-size:9px;font-weight:500;color:#8098b4;">новых лаб</span></div>
+        </div>
+      </div>
+
+    </div><!-- /rcol -->
+  </div><!-- /body -->
+
+  <!-- ══════════════════════════════════════
+       SOURCES
+  ══════════════════════════════════════ -->
+  <div class="sources">
+    <div class="src-title">Источники и методология</div>
+    <div class="src-grid">
+
+      <div class="src-item" id="src-1">
+        <a href="https://www.marketsandmarkets.com/PressReleases/laboratory-information-management-systems.asp" target="_blank" class="src-link">
+          <span class="src-num">1</span>MarketsandMarkets — LIMS Market worth $5.19B by 2030
+        </a>
+        <span class="src-desc">LIMS-рынок: $2,88B в 2025 → $5,19B к 2030, CAGR 12,5%. Верхняя граница TAM по сегменту LIMS. Также основа проекций столбчатой диаграммы на 2026–2030E.</span>
+      </div>
+
+      <div class="src-item" id="src-2">
+        <a href="https://www.fortunebusinessinsights.com/laboratory-information-management-system-lims--114329" target="_blank" class="src-link">
+          <span class="src-num">2</span>Fortune Business Insights — LIMS Market Size, Share 2034
+        </a>
+        <span class="src-desc">LIMS-рынок: $2,5B в 2024–2025, CAGR 8%. Нижняя/средняя оценка TAM LIMS. Использована для базового года диаграммы (2024: $2,5B) и нижней границы CAGR 8%.</span>
+      </div>
+
+      <div class="src-item" id="src-3">
+        <a href="https://www.globenewswire.com/news-release/2026/02/05/3232777/28124/en/Laboratory-Information-Management-System-Global-Market-Report-2024-2025-2029.html" target="_blank" class="src-link">
+          <span class="src-num">3</span>GlobeNewsWire — LIMS Global Market Report 2024–2029
+        </a>
+        <span class="src-desc">$2,5B (2024) → $3,67B к 2029, CAGR 8%. Источник для промежуточных прогнозных значений диаграммы (2027E: $3,7B) и обоснования динамики SAM >15%/год в РФ.</span>
+      </div>
+
+      <div class="src-item" id="src-4">
+        <a href="https://www.marketsandmarkets.com/Market-Reports/electronic-lab-notebook-market-37125014.html" target="_blank" class="src-link">
+          <span class="src-num">4</span>MarketsandMarkets — ELN Market Report 2025–2030
+        </a>
+        <span class="src-desc">Рынок ELN: $0,72B в 2025 → $1,03B к 2030, CAGR 7,3%. Прибавляется к LIMS-оценке для получения совокупного TAM ($3,2–3,9B). ₽320 млрд = ($2,5B LIMS + $0,72B ELN) × 90 руб./$.</span>
+      </div>
+
+      <div class="src-item" id="src-5">
+        <a href="https://www.globenewswire.com/news-release/2026/02/04/3231721/0/en/Electronic-Lab-Notebook-Market-to-Reach-USD-1-30-Billion-by-2035.html" target="_blank" class="src-link">
+          <span class="src-num">5</span>SNS Insider / GlobeNewsWire — ELN Market to $1,30B by 2035
+        </a>
+        <span class="src-desc">ELN: $0,67B в 2025 → $1,30B к 2035, CAGR 7%. Нижняя оценка ELN-сегмента TAM. Подтверждает совокупный TAM ≥$3,2B.</span>
+      </div>
+
+      <div class="src-item" id="src-6">
+        <a href="https://www.grandviewresearch.com/industry-analysis/laboratory-information-management-system-lims-market" target="_blank" class="src-link">
+          <span class="src-num">6</span>Grand View Research — LIMS Market Report 2030
+        </a>
+        <span class="src-desc">Исторические данные 2023 г.: рынок LIMS ~$2,2B. Использован как базовый год (2023: $2,2B) на столбчатой диаграмме. Прогноз к 2030: $5,2B+ (верхняя граница диапазона TAM).</span>
+      </div>
+
+      <div class="src-item" id="src-7">
+        <a href="https://rosstat.gov.ru/statistics/science" target="_blank" class="src-link">
+          <span class="src-num">7</span>Росстат — Наука, инновации и технологии
+        </a>
+        <span class="src-desc">4 125 организаций выполняли исследования и разработки в 2023 г. — ключевая база для расчёта SAM (~3 200 адресуемых после фильтрации). Также база для оценки сегмента НИИ (17–24 M ARR = 800 орг. × 300k).</span>
+      </div>
+
+      <div class="src-item" id="src-8">
+        <a href="https://issek.hse.ru/news/1082485052.html" target="_blank" class="src-link">
+          <span class="src-num">8</span>ВШЭ ИСИЭЗ — Российская наука в 2024 году
+        </a>
+        <span class="src-desc">382 800 исследователей в эквиваленте полной занятости (2024 г.). Россия входит в топ-5 мировых лидеров по этому показателю. Подтверждает масштаб рынка и высокий спрос на инструменты управления данными.</span>
+      </div>
+
+      <div class="src-item" id="src-9">
+        <a href="https://issek.hse.ru/news/969714262.html" target="_blank" class="src-link">
+          <span class="src-num">9</span>ВШЭ — Образование в цифрах: 2024
+        </a>
+        <span class="src-desc">1 255 вузов в России (университеты, институты, академии). Из них ~400 с активными НИОКР-лабораториями включены в SAM. Общий бюджет вузов на 2024 г. — ₽984,8 млрд (+9,1%).</span>
+      </div>
+
+      <div class="src-item" id="src-10">
+        <a href="https://www.vedomosti.ru/economics/articles/2026/03/31/1186677-v-2024-godu-organizatsii-potratili-na-issledovaniya-i-razrabotki" target="_blank" class="src-link">
+          <span class="src-num">10</span>Ведомости — Затраты на ИР в 2024 г. выросли на 14%
+        </a>
+        <span class="src-desc">Внутренние затраты на исследования и разработки достигли 1,94 трлн руб. в 2024 г. (+249 млрд к 2023 г., рост 14%). Источник цифры «+14% ИР» в блоке катализаторов.</span>
+      </div>
+
+      <div class="src-item" id="src-11">
+        <a href="https://www.minobrnauki.gov.ru/press-center/news/novosti-ministerstva/81678/" target="_blank" class="src-link">
+          <span class="src-num">11</span>Минобрнауки — 200 новых молодёжных лабораторий (2024)
+        </a>
+        <span class="src-desc">В 2024 г. по нацпроекту «Наука и университеты» создаются 200 новых молодёжных лабораторий (₽3,2 млрд финансирования). Запускаются с нуля — идеальный первичный рынок без legacy-систем.</span>
+      </div>
+
+      <div class="src-item" id="src-12">
+        <a href="https://minobrnauki.gov.ru/importozameshcheniye/" target="_blank" class="src-link">
+          <span class="src-num">12</span>Минобрнауки — Импортозамещение в науке и образовании
+        </a>
+        <span class="src-desc">Государственная программа импортозамещения ПО. Реестр ЦКП (~500 центров коллективного пользования в России). Основа для оценки сегмента ЦКП: 50 орг. × 400k = 20 M руб. ARR.</span>
+      </div>
+
+      <div class="src-item" id="src-13">
+        <a href="https://www.iksmedia.ru/news/6050065-Obem-rossijskogo-ITrynka-v-2024-god.html" target="_blank" class="src-link">
+          <span class="src-num">13</span>IKSMEDIA — Российский ИТ-рынок 2024: рост 15%
+        </a>
+        <span class="src-desc">Объём российского ИТ-рынка превысил 3 трлн руб. (+15% к 2023 г.). Лабораторное ПО растёт быстрее рынка за счёт вакуума после ухода зарубежных игроков — обоснование «>15%/год» для SAM.</span>
+      </div>
+
+      <div class="src-item" id="src-14">
+        <a href="https://www.clearytradewatch.com/2024/10/u-s-uk-and-eu-sanctions-alignment-u-s-it-and-software-sector-service-bans-and-export-controls-take-effect-as-russia-sanctions-continue-to-expand/" target="_blank" class="src-link">
+          <span class="src-num">14</span>Cleary — US IT &amp; Software Service Bans, действуют с 12.09.2024
+        </a>
+        <span class="src-desc">С 12 сентября 2024 г. США запретили экспорт IT-консультационных услуг, IT-поддержки и облачных сервисов корпоративного ПО в Россию. Прямое основание для вывода об уходе Benchling, LabWare, STARLIMS с российского рынка.</span>
+      </div>
+
+      <div class="src-item" id="src-15">
+        <a href="https://solutions.1c.ru/catalog/lims/features" target="_blank" class="src-link">
+          <span class="src-num">15</span>1С:LIMS — Функционал решения (выпуск КОРП, июль 2024)
+        </a>
+        <span class="src-desc">Покрывает контроль качества, учёт образцов, протоколы испытаний, диаграммы Шухарта. Нет ELN, нет AI-поиска, нет управления проектами. Ориентировано на производственные лаборатории, не на НИОКР.</span>
+      </div>
+
+      <div class="src-item" id="src-16">
+        <a href="https://likoris.com/lims/" target="_blank" class="src-link">
+          <span class="src-num">16</span>myLab (ЛИКОРИС) — российская LIMS-система
+        </a>
+        <span class="src-desc">Российское SaaS-решение: сбор и обработка данных, учёт, отчёты. Поддержка ФГИС Росаккредитации. Ориентировано на испытательные лаборатории (аккредитация, ISO 17025), не на исследовательские НИИ.</span>
+      </div>
+
+      <div class="src-item" id="src-17">
+        <a href="https://www.elabftw.net/" target="_blank" class="src-link">
+          <span class="src-num">17</span>eLabFTW — free open source ELN
+        </a>
+        <span class="src-desc">Бесплатная open-source ELN: ведение журналов экспериментов, базовый учёт реагентов. Нет LIMS, нет AI/RAG, нет управления проектами, нет SLA-поддержки. Требует самостоятельного развёртывания (self-hosted). Популярна в академии как «костыль».</span>
+      </div>
+
+      <div class="src-item" id="src-18">
+        <a href="https://www.igorlabapp.com/post/best-benchling-alternatives" target="_blank" class="src-link">
+          <span class="src-num">18</span>Benchling Alternatives: ELN and LIMS comparison 2025
+        </a>
+        <span class="src-desc">Benchling: план Professional от $20 000/год за 5 пользователей (последняя публичная цена, 2020). Labguru / Cenevo: от $8 000/год. Использовано для калибровки чека фарма-сегмента (2 млн руб./год = ~$22k) и бенчмарка SOM-пенетрации (~1–3% за первые 3 года у аналогов).</span>
+      </div>
+
+      <div class="src-item" id="src-19">
+        <a href="https://www.novostiitkanala.ru/news/detail.php?ID=181461" target="_blank" class="src-link">
+          <span class="src-num">19</span>Новости ИТ-канала — Импортозамещение ИТ: гранты и субсидии
+        </a>
+        <span class="src-desc">Правительство предоставляет гранты, покрывающие до 50% затрат на проекты замены иностранного ПО на отечественные аналоги. Общий объём финансирования — ₽6 млрд. Источник цифры «₽6 млрд» в блоке катализаторов.</span>
+      </div>
+
+    </div><!-- /src-grid -->
+  </div><!-- /sources -->
+
+  <!-- ══ FOOTER ══ -->
+  <div class="ftr">
+    <div class="ftr-brand">КВАНТАРА</div>
+    <div class="ftr-conf">КОНФИДЕНЦИАЛЬНО &nbsp;·&nbsp; АПРЕЛЬ 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

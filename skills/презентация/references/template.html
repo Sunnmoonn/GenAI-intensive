@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>{{TITLE}}</title>
+
+  <!-- Reveal.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Bebas Neue Cyrillic (с поддержкой кириллицы) — НЕ Google Fonts! -->
+  <link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+  <!-- Inter + Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       PRESENTATION STYLE — injected per theme
+       ============================================================ */
+    {{STYLE_CSS}}
+
+    /* ============================================================
+       REVEAL.JS BASE OVERRIDES
+       ============================================================ */
+    :root {
+      --r-background-color: var(--bg);
+      --r-main-color: var(--text);
+      --r-heading-color: var(--heading, var(--text));
+      --r-main-font: var(--font-body, 'Inter', sans-serif);
+      --r-heading-font: var(--font-heading, 'Montserrat', sans-serif);
+      --r-heading-font-weight: 800;
+      --r-heading-text-transform: none;
+      --r-heading-letter-spacing: -0.02em;
+      --r-link-color: var(--accent);
+      --r-link-color-hover: var(--accent);
+      --r-selection-background-color: var(--accent);
+      --r-selection-color: #fff;
+      --r-block-margin: 0.6em;
+    }
+
+    .reveal {
+      font-family: var(--font-body, 'Inter', sans-serif);
+      font-size: 36px;
+    }
+
+    .reveal .slides section {
+      padding: 60px 72px;
+      text-align: left;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: var(--font-heading, 'Montserrat', sans-serif);
+      color: var(--heading, var(--text));
+      margin: 0 0 0.5em 0;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h1 { font-size: 2.2em; font-weight: 900; }
+    .reveal h2 { font-size: 1.5em; font-weight: 800; }
+    .reveal h3 { font-size: 1.1em; font-weight: 700; }
+
+    .reveal p { margin: 0 0 0.5em 0; line-height: 1.5; }
+    .reveal ul, .reveal ol { margin: 0 0 0.5em 1.2em; line-height: 1.6; }
+    .reveal li { margin-bottom: 0.3em; }
+    .reveal strong { color: var(--accent); }
+    .reveal em { font-style: italic; opacity: 0.85; }
+    .reveal .fragment { opacity: 0; transition: opacity 0.3s; }
+    .reveal .fragment.visible { opacity: 1; }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+       ============================================================ */
+
+    /* Two columns */
+    .slide-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5em;
+      align-items: start;
+      height: calc(100% - 3em);
+    }
+    .slide-cols.cols-6-4 { grid-template-columns: 6fr 4fr; }
+    .slide-cols.cols-4-6 { grid-template-columns: 4fr 6fr; }
+    .slide-cols.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* Big number / KPI */
+    .big-num {
+      font-family: var(--font-display, 'Bebas Neue', 'Montserrat', sans-serif);
+      font-size: 5.5em;
+      line-height: 0.9;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      font-weight: 900;
+    }
+    .big-num-label {
+      font-size: 0.55em;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.3em;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2em;
+    }
+    .kpi-item { text-align: center; }
+
+    /* Accent box */
+    .accent-box {
+      background: var(--accent);
+      color: var(--accent-text, #fff);
+      padding: 0.15em 0.4em;
+      display: inline;
+    }
+
+    /* Tag / chip */
+    .tag {
+      display: inline-block;
+      padding: 0.15em 0.7em;
+      border-radius: 999px;
+      background: var(--accent-light, rgba(0,0,0,0.08));
+      color: var(--accent);
+      font-size: 0.6em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8em;
+    }
+
+    /* Divider line */
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.6em 0;
+    }
+
+    /* Quote */
+    .blockquote-big {
+      font-size: 1.3em;
+      font-style: italic;
+      line-height: 1.4;
+      border-left: 5px solid var(--accent);
+      padding-left: 1em;
+      color: var(--text);
+      margin: 0;
+    }
+    .blockquote-source {
+      font-size: 0.55em;
+      color: var(--text-muted);
+      margin-top: 0.8em;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* Steps */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8em;
+      margin-bottom: 0.6em;
+    }
+    .steps li::before {
+      content: counter(step);
+      min-width: 1.6em;
+      height: 1.6em;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--accent-text, #fff);
+      font-weight: 800;
+      font-size: 0.7em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1em;
+    }
+
+    /* Muted text */
+    .text-muted { color: var(--text-muted); font-size: 0.75em; }
+    .text-accent { color: var(--accent); }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+
+    /* Image placeholder / actual image */
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius, 0px);
+    }
+    .img-box {
+      background: var(--surface, #f5f5f5);
+      border-radius: var(--radius, 0px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 250px;
+    }
+
+    /* Comparison table */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+    .compare-table th {
+      background: var(--accent);
+      color: var(--accent-text, #fff);
+      padding: 0.5em 0.8em;
+      text-align: left;
+      font-weight: 700;
+    }
+    .compare-table td {
+      padding: 0.4em 0.8em;
+      border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.1));
+    }
+    .compare-table tr:nth-child(even) td {
+      background: var(--surface, rgba(0,0,0,0.03));
+    }
+
+    /* Icon row */
+    .icon-row {
+      display: flex;
+      gap: 1.5em;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .icon-item {
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
+    }
+    .icon-item .icon { font-size: 1.8em; }
+    .icon-item .label { font-size: 0.55em; color: var(--text-muted); margin-top: 0.3em; }
+
+    /* ============================================================
+       TITLE SLIDE (layout="title")
+       ============================================================ */
+    .slide-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 60px 72px;
+    }
+    .slide-title h1 { font-size: 2.4em; max-width: 80%; }
+    .slide-title .subtitle {
+      font-size: 0.8em;
+      color: var(--text-muted);
+      margin-top: 0.5em;
+      font-weight: 400;
+    }
+    .slide-title .meta {
+      margin-top: 2em;
+      font-size: 0.5em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* SECTION DIVIDER (layout="section") */
+    .slide-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      padding: 60px 72px;
+      background: var(--accent) !important;
+    }
+    .slide-section h2 {
+      color: var(--accent-text, #fff) !important;
+      font-size: 2em;
+    }
+    .slide-section p { color: rgba(255,255,255,0.8); font-size: 0.7em; }
+
+    /* CONTACT / END (layout="contact") */
+    .slide-contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+    .contact-name {
+      font-family: var(--font-display, 'Bebas Neue', 'Montserrat', sans-serif);
+      font-size: 2.5em;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .contact-links {
+      margin-top: 1em;
+      font-size: 0.6em;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+
+    /* Slide number */
+    .reveal .slide-number {
+      font-family: var(--font-body, 'Inter', sans-serif);
+      font-size: 0.55em;
+      background: transparent;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    /* Progress bar */
+    .reveal .progress { background: rgba(0,0,0,0.15); }
+    .reveal .progress span { background: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      {{SLIDES_HTML}}
+
+    </div>
+  </div>
+
+  <!-- Reveal.js core -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+
+  <!-- Mermaid.js (conditional — included only if diagrams present) -->
+  {{MERMAID_SCRIPT}}
+
+  <!-- Chart.js (conditional — included only if charts present) -->
+  {{CHARTJS_SCRIPT}}
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      width: 1280,
+      height: 720,
+      margin: 0.0,
+      minScale: 0.2,
+      maxScale: 2.0,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      backgroundTransition: 'fade',
+      controls: true,
+      controlsTutorial: false,
+      overview: true,
+      center: false,
+      touch: true,
+      loop: false,
+      fragments: true,
+      keyboard: true,
+      plugins: []
+    });
+
+    /* ---- Mermaid init (conditional) ---- */
+    {{MERMAID_INIT}}
+
+    /* ---- Chart.js init (conditional) ---- */
+    {{CHARTJS_INIT}}
+  </script>
+</body>
+</html>

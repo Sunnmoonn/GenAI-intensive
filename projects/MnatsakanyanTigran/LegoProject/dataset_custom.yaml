@@ -1,0 +1,6 @@
+train: /Volumes/LEGO/yolov_12_custom/train
+val: /Volumes/LEGO/yolov_12_custom/val
+
+nc: 14
+
+names: [ "2300", "2301","2302","3011","31110","3437","4066","40666","44524","4672","6474","93353","98223","98233"]

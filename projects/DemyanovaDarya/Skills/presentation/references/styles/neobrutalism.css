@@ -1,0 +1,116 @@
+/* ============================================================
+   STYLE: Neobrutalism
+   Использовать для: конференции, bold-выступления, стартапы
+   Палитра: жёлтый фон, оранжевый акцент, толстые чёрные рамки
+   ============================================================ */
+:root {
+  --bg:           #fffbeb;
+  --surface:      #ffffff;
+  --text:         #111111;
+  --text-muted:   #555555;
+  --heading:      #111111;
+  --accent:       #ff6b00;
+  --accent-light: rgba(255, 107, 0, 0.10);
+  --accent-text:  #ffffff;
+  --border-color: #111111;
+  --border:       3px solid #111111;
+  --shadow:       6px 8px 0 #111111;
+  --radius:       0px;
+  --font-body:    'Inter', sans-serif;
+  --font-heading: 'Bebas Neue', 'Montserrat', sans-serif;
+  --font-display: 'Bebas Neue', 'Montserrat', sans-serif;
+}
+
+.reveal {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Заголовки через Bebas Neue — монументальные */
+.reveal h1, .reveal h2 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.reveal h1 { font-size: 2.6em; }
+.reveal h2 { font-size: 1.8em; }
+
+/* Жирные рамки на слайде */
+.reveal .slides section {
+  border: var(--border);
+}
+
+/* Highlight-блок — белый с чёрной рамкой и тенью */
+.highlight {
+  background: var(--surface);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 0.7em 1em;
+}
+
+/* Маркеры — жирные крестики */
+.reveal ul { list-style: none; padding-left: 0; }
+.reveal ul li::before {
+  content: '✕';
+  color: var(--accent);
+  font-weight: 900;
+  margin-right: 0.5em;
+}
+
+/* Акцентный блок */
+.accent-box {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.15em 0.4em;
+  display: inline;
+  font-weight: 900;
+}
+
+/* Big number */
+.big-num {
+  color: var(--accent);
+  -webkit-text-stroke: 2px #111;
+}
+
+/* Кнопкоподобные теги */
+.tag {
+  background: #111;
+  color: #fff;
+  border-radius: 0;
+  font-size: 0.55em;
+  padding: 0.2em 0.8em;
+}
+
+/* Section divider — полностью чёрный */
+.slide-section {
+  background: #111111 !important;
+  border: none !important;
+}
+.slide-section h2 { color: var(--accent) !important; font-family: var(--font-display); font-size: 2.5em; }
+.slide-section p { color: rgba(255,255,255,0.7); }
+
+/* Прогресс бар — толстый оранжевый */
+.reveal .progress { height: 6px; background: rgba(0,0,0,0.15); }
+.reveal .progress span { background: var(--accent); }
+
+/* Карточка */
+.card {
+  background: var(--surface);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 1em 1.2em;
+}
+
+/* Divider */
+.divider { background: #111; height: 5px; width: 80px; }
+
+/* Ссылки */
+.reveal a { color: var(--accent); text-decoration: underline; font-weight: 700; }
+
+/* Steps numbers — квадратные */
+.steps li::before {
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 0.8em;
+}

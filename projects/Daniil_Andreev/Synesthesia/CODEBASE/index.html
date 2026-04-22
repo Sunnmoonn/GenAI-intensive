@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Синестезия — почувствуй музыку на вкус</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Unbounded:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:       #07060d;
+            --bg-card:  rgba(255,255,255,.03);
+            --text:     #ececf2;
+            --muted:    #8a86a0;
+            --accent:   #a99cff;
+            --accent-2: #ff9cd0;
+            --accent-3: #9cf5ff;
+            --accent-g: rgba(169,156,255,.10);
+            --border:   rgba(255,255,255,.08);
+            --r:        14px;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body { overflow-x: hidden; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            min-height: 100vh;
+            padding: 2.5rem 1rem 5rem;
+            position: relative;
+        }
+
+        /* Animated gradient backdrop */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: -20%;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(169,156,255,.18), transparent 45%),
+                radial-gradient(circle at 80% 30%, rgba(255,156,208,.14), transparent 45%),
+                radial-gradient(circle at 50% 80%, rgba(156,245,255,.12), transparent 50%);
+            filter: blur(40px);
+            animation: drift 22s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            0%   { transform: translate(0, 0) rotate(0deg); }
+            50%  { transform: translate(3%, -2%) rotate(8deg); }
+            100% { transform: translate(-2%, 3%) rotate(-6deg); }
+        }
+
+        .container { max-width: 720px; margin: 0 auto; position: relative; }
+
+        /* ── Header ── */
+        header { text-align: center; margin-bottom: 3rem; }
+
+        header h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(2.4rem, 9vw, 5rem);
+            font-weight: 300;
+            letter-spacing: .04em;
+            line-height: 1;
+            background: linear-gradient(110deg, #ececf2 0%, #a99cff 35%, #ff9cd0 60%, #9cf5ff 85%, #ececf2 100%);
+            background-size: 250% 250%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 9s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%      { background-position: 100% 50%; }
+        }
+
+        header p {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--muted);
+            font-size: 1.15rem;
+            margin-top: .9rem;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: .04em;
+        }
+
+        /* ── Search form ── */
+        .search {
+            display: flex;
+            gap: .7rem;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .search input {
+            flex: 1;
+            min-width: 130px;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: .95rem 1.2rem;
+            color: var(--text);
+            font-family: inherit;
+            font-size: .98rem;
+            letter-spacing: .01em;
+            outline: none;
+            transition: border-color .25s, box-shadow .25s, background .25s;
+        }
+        .search input::placeholder { color: var(--muted); font-style: italic; }
+        .search input:focus {
+            border-color: rgba(169,156,255,.5);
+            box-shadow: 0 0 0 4px rgba(169,156,255,.08);
+            background: rgba(255,255,255,.05);
+        }
+
+        .search button {
+            position: relative;
+            background: linear-gradient(110deg, #a99cff, #ff9cd0, #9cf5ff, #a99cff);
+            background-size: 300% 100%;
+            color: #0a0815;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 400;
+            border: none;
+            border-radius: var(--r);
+            padding: .95rem 2rem;
+            font-size: .92rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform .15s, box-shadow .25s;
+            animation: gradient-flow 6s linear infinite;
+            box-shadow: 0 6px 22px rgba(169,156,255,.25);
+        }
+        @keyframes gradient-flow {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        .search button:hover   { box-shadow: 0 8px 28px rgba(255,156,208,.35); }
+        .search button:active  { transform: scale(.97); }
+        .search button:disabled { opacity: .35; cursor: not-allowed; animation: none; }
+
+        /* ── Error ── */
+        .err {
+            background: rgba(255,80,80,.08);
+            border: 1px solid rgba(255,80,80,.2);
+            border-radius: var(--r);
+            padding: .9rem 1.1rem;
+            color: #ff9090;
+            font-size: .87rem;
+            margin-bottom: 1.4rem;
+            display: none;
+        }
+
+        /* ── Loading ── */
+        @keyframes pulse {
+            0%,100% { opacity: .3; }
+            50%      { opacity: 1; }
+        }
+
+        #loading {
+            display: none;
+            text-align: center;
+            padding: 3.5rem 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            letter-spacing: .03em;
+            background: linear-gradient(110deg, #a99cff, #ff9cd0, #9cf5ff, #a99cff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-flow 4s linear infinite, pulse 2.4s ease-in-out infinite;
+        }
+        #loading small {
+            display: block;
+            margin-top: .8rem;
+            font-size: .75rem;
+            font-style: normal;
+            color: var(--muted);
+            letter-spacing: .08em;
+            -webkit-text-fill-color: var(--muted);
+        }
+
+        /* ── Results ── */
+        #results {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .8s ease, transform .8s ease;
+            display: none;
+        }
+        #results.vis { opacity: 1; transform: translateY(0); }
+
+        .song-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .song-heading h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            font-style: italic;
+            letter-spacing: .01em;
+        }
+        .song-heading span {
+            font-family: 'Unbounded', sans-serif;
+            font-size: .72rem;
+            color: var(--muted);
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: .35rem;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 1.6rem 1.7rem;
+            margin-bottom: 1rem;
+            transition: border-color .3s, transform .3s;
+        }
+        .card:hover { border-color: rgba(169,156,255,.18); }
+
+        .card-label {
+            font-family: 'Unbounded', sans-serif;
+            font-size: .62rem;
+            text-transform: uppercase;
+            letter-spacing: .22em;
+            color: var(--muted);
+            margin-bottom: 1.1rem;
+        }
+
+        /* ── Palette ── */
+        .palette { display: flex; flex-direction: column; gap: .55rem; }
+
+        .swatch-row { display: flex; align-items: center; gap: .9rem; }
+
+        .swatch {
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .swatch-info { flex: 1; }
+
+        .swatch-name {
+            font-size: .88rem;
+            display: flex;
+            align-items: baseline;
+            gap: .5rem;
+        }
+
+        .swatch-hex {
+            font-family: monospace;
+            font-size: .72rem;
+            color: var(--muted);
+        }
+
+        .swatch-reason {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-top: .2rem;
+            line-height: 1.45;
+        }
+
+        /* ── Taste ── */
+        .taste-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: .6rem;
+            line-height: 1.4;
+            color: #ece8ff;
+        }
+
+        .taste-desc {
+            font-size: .83rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: .85rem;
+        }
+
+        .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+        .tag {
+            background: var(--accent-g);
+            border: 1px solid rgba(124,111,255,.22);
+            color: #b0a3ff;
+            font-size: .73rem;
+            padding: .22rem .62rem;
+            border-radius: 20px;
+        }
+
+        /* ── Pyramid ── */
+        .pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .15rem;
+            width: 100%;
+        }
+
+        .p-level {
+            width: 100%;
+            padding: .6rem 0;
+        }
+        .p-top  { max-width: 62%; }
+        .p-mid  { max-width: 82%; }
+        .p-base { max-width: 100%; }
+
+        .p-tier {
+            font-size: .62rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--muted);
+            margin-bottom: .45rem;
+        }
+
+        .p-notes { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+        .p-note {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            font-size: .78rem;
+            padding: .22rem .6rem;
+            border-radius: 20px;
+        }
+
+        .p-top  .p-note { border-color: rgba(255,210,160,.28); color: #ffd8a8; }
+        .p-mid  .p-note { border-color: rgba(160,210,255,.28); color: #a8d8ff; }
+        .p-base .p-note { border-color: rgba(160,255,190,.28); color: #a8ffbe; }
+
+        .p-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Explanation ── */
+        .quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.7;
+            color: #d8d4ec;
+            letter-spacing: .005em;
+        }
+
+
+        /* ── Responsive ── */
+        @media (max-width: 480px) {
+            .search { flex-direction: column; }
+            .search button { width: 100%; }
+            .p-top, .p-mid, .p-base { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <h1>Синестезия</h1>
+        <p>Почувствуй музыку на вкус</p>
+    </header>
+
+    <!-- Search -->
+    <form class="search" onsubmit="run(event)">
+        <input type="text" id="artist" placeholder="Артист" required>
+        <input type="text" id="track"  placeholder="Название песни" required>
+        <button type="submit" id="btn">Узнать</button>
+    </form>
+
+    <div class="err" id="err"></div>
+    <div id="loading">Прислушиваюсь, чувствую, интерпретирую<small>это может занять до минуты</small></div>
+
+    <!-- Results -->
+    <div id="results">
+        <div class="song-heading">
+            <h2 id="rTitle"></h2>
+            <span id="rArtist"></span>
+        </div>
+
+        <div class="card">
+            <div class="card-label">Цветовая палитра</div>
+            <div class="palette" id="palette"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">Вкусовой профиль</div>
+            <div class="taste-main" id="tasteMain"></div>
+            <div class="taste-desc"  id="tasteDesc"></div>
+            <div class="tags"        id="tasteTags"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">Аромат</div>
+            <div class="pyramid">
+                <div class="p-level p-top">
+                    <div class="p-tier">Верхние ноты</div>
+                    <div class="p-notes" id="aTop"></div>
+                </div>
+                <div class="p-divider"></div>
+                <div class="p-level p-mid">
+                    <div class="p-tier">Средние ноты</div>
+                    <div class="p-notes" id="aMid"></div>
+                </div>
+                <div class="p-divider"></div>
+                <div class="p-level p-base">
+                    <div class="p-tier">Базовые ноты</div>
+                    <div class="p-notes" id="aBase"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">Синестетический образ</div>
+            <div class="quote" id="expl"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ── Agent: call backend, which fetches lyrics + calls Claude ─────────────────
+async function analyze(artist, title) {
+    const res = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ artist, title })
+    });
+
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); }
+    catch {
+        if (res.status === 504 || /timeout/i.test(text)) {
+            throw new Error('Модель не успела ответить за минуту. Попробуйте ещё раз или другую песню.');
+        }
+        throw new Error('Сервер вернул неожиданный ответ. Попробуйте позже.');
+    }
+
+    if (!res.ok) throw new Error(data.error || `Ошибка ${res.status}`);
+    if (!data.colors || !data.taste || !data.aroma) {
+        throw new Error('Не удалось разобрать ответ модели. Проверьте имя артиста и название песни.');
+    }
+    return data;
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render(artist, title, d) {
+    document.getElementById('rTitle').textContent  = title;
+    document.getElementById('rArtist').textContent = artist;
+
+    // Colors
+    document.getElementById('palette').innerHTML = d.colors.map(c => `
+        <div class="swatch-row">
+            <div class="swatch" style="background:${c.hex}"></div>
+            <div class="swatch-info">
+                <div class="swatch-name">${c.name}<span class="swatch-hex">${c.hex}</span></div>
+                <div class="swatch-reason">${c.reason}</div>
+            </div>
+        </div>`).join('');
+
+    // Taste
+    document.getElementById('tasteMain').textContent = d.taste.main;
+    document.getElementById('tasteDesc').textContent = d.taste.description;
+    document.getElementById('tasteTags').innerHTML   =
+        d.taste.notes.map(n => `<span class="tag">${n}</span>`).join('');
+
+    // Aroma
+    const notes = (id, arr) => {
+        document.getElementById(id).innerHTML =
+            arr.map(n => `<span class="p-note">${n}</span>`).join('');
+    };
+    notes('aTop',  d.aroma.top);
+    notes('aMid',  d.aroma.middle);
+    notes('aBase', d.aroma.base);
+
+    // Explanation
+    document.getElementById('expl').textContent = d.explanation;
+
+    // Fade in
+    const el = document.getElementById('results');
+    el.style.display = 'block';
+    requestAnimationFrame(() => el.classList.add('vis'));
+}
+
+// ── UI helpers ────────────────────────────────────────────────────────────────
+function setLoading(on) {
+    document.getElementById('loading').style.display = on ? 'block' : 'none';
+    document.getElementById('btn').disabled = on;
+}
+
+function showErr(msg) {
+    const el = document.getElementById('err');
+    el.textContent = msg;
+    el.style.display = 'block';
+}
+
+// ── Main handler ──────────────────────────────────────────────────────────────
+async function run(e) {
+    e.preventDefault();
+
+    const artist = document.getElementById('artist').value.trim();
+    const track  = document.getElementById('track').value.trim();
+
+    // Reset
+    document.getElementById('err').style.display = 'none';
+    const res = document.getElementById('results');
+    res.classList.remove('vis');
+    res.style.display = 'none';
+    setLoading(true);
+
+    try {
+        const data = await analyze(artist, track);
+        render(artist, track, data);
+    } catch (err) {
+        showErr(err.message || 'Что-то пошло не так. Попробуйте снова.');
+    } finally {
+        setLoading(false);
+    }
+}
+</script>
+</body>
+</html>

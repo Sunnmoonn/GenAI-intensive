@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Реестр маркетинговых механик · 2025–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090d;
+    --bg-2:#0d1117;
+    --panel:#111820;
+    --panel-hi:#161e28;
+    --border:#1f2a37;
+    --border-hi:#2c3a4c;
+    --text:#e6edf3;
+    --text-dim:#8b98a9;
+    --text-mute:#5a6777;
+    --cyan:#22d3ee;
+    --cyan-dim:#0891a6;
+    --amber:#fbbf24;
+    --green:#34d399;
+    --violet:#a78bfa;
+    --rose:#fb7185;
+    --blue:#60a5fa;
+    --grad-1:linear-gradient(135deg,#22d3ee 0%,#a78bfa 100%);
+    --grad-2:linear-gradient(135deg,#fbbf24 0%,#fb7185 100%);
+    --glow:0 0 40px rgba(34,211,238,.15);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    font-size:15px;
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* starfield bg */
+  body::before{
+    content:'';position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(34,211,238,.08), transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(167,139,250,.06), transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(251,191,36,.02), transparent 60%);
+    pointer-events:none;
+  }
+  code,.mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+  a{color:var(--cyan);text-decoration:none}
+
+  /* layout */
+  .wrap{max-width:1280px;margin:0 auto;padding:32px 28px 64px}
+
+  /* header */
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:40px;
+  }
+  .logo{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:-.01em}
+  .logo-dot{
+    width:28px;height:28px;border-radius:8px;
+    background:var(--grad-1);box-shadow:var(--glow);
+    display:flex;align-items:center;justify-content:center;color:#000;font-weight:800;font-size:13px;
+  }
+  .logo-meta{display:flex;flex-direction:column;line-height:1.15}
+  .logo-meta small{color:var(--text-mute);font-size:11px;font-weight:500}
+  .source-chip{
+    font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;
+    padding:6px 10px;border:1px solid var(--border);border-radius:999px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .source-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+
+  /* hero */
+  .hero{margin-bottom:48px}
+  .hero-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--cyan);font-size:12px;text-transform:uppercase;letter-spacing:.2em;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05;
+    background:linear-gradient(135deg,#fff 0%,#8b98a9 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:20px;
+  }
+  .hero p.lede{color:var(--text-dim);font-size:18px;max-width:720px;line-height:1.6}
+
+  /* shifts strip */
+  .shifts{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;
+  }
+  .shift{
+    padding:20px;border:1px solid var(--border);border-radius:14px;
+    background:linear-gradient(180deg,var(--panel) 0%,var(--bg-2) 100%);
+    position:relative;overflow:hidden;
+  }
+  .shift::before{
+    content:'';position:absolute;inset:0;border-radius:14px;pointer-events:none;
+    background:linear-gradient(135deg,rgba(34,211,238,.08),transparent 40%);
+  }
+  .shift .num{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);
+    margin-bottom:10px;letter-spacing:.1em;
+  }
+  .shift .title{font-weight:600;margin-bottom:8px;font-size:15px}
+  .shift .body{color:var(--text-dim);font-size:13.5px;line-height:1.55}
+
+  /* tabs */
+  .tabs{
+    display:flex;gap:4px;margin:48px 0 32px;padding:4px;
+    background:var(--panel);border:1px solid var(--border);border-radius:12px;
+    width:fit-content;
+  }
+  .tab{
+    padding:10px 18px;border-radius:8px;cursor:pointer;
+    color:var(--text-dim);font-weight:500;font-size:14px;
+    border:none;background:transparent;font-family:inherit;
+    transition:all .2s;
+    display:flex;align-items:center;gap:8px;
+  }
+  .tab:hover{color:var(--text)}
+  .tab.active{background:var(--panel-hi);color:var(--text);box-shadow:0 0 0 1px var(--border-hi)}
+  .tab .count{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    padding:2px 7px;border-radius:999px;background:var(--bg);color:var(--text-mute);
+  }
+  .tab.active .count{color:var(--cyan);background:rgba(34,211,238,.08)}
+
+  .view{display:none}
+  .view.active{display:block;animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+  /* groups grid */
+  .groups{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .group-card{
+    padding:24px;border:1px solid var(--border);border-radius:16px;
+    background:linear-gradient(180deg,var(--panel) 0%,rgba(13,17,23,.6) 100%);
+    cursor:pointer;transition:all .25s;
+    position:relative;overflow:hidden;
+  }
+  .group-card:hover{border-color:var(--border-hi);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+  .group-card::after{
+    content:'';position:absolute;top:0;right:0;width:160px;height:160px;
+    background:radial-gradient(circle at top right,var(--_accent,rgba(34,211,238,.08)),transparent 70%);
+    pointer-events:none;
+  }
+  .group-card .g-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .group-card .g-num{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--_color,var(--cyan));letter-spacing:.05em;
+  }
+  .group-card .g-count{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-mute);
+  }
+  .group-card h3{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+  .group-card p{color:var(--text-dim);font-size:13.5px;margin-bottom:16px;line-height:1.55}
+  .mechs{display:flex;flex-wrap:wrap;gap:6px}
+  .mech-chip{
+    font-size:12.5px;padding:6px 11px;border-radius:8px;
+    background:var(--bg-2);border:1px solid var(--border);color:var(--text);
+    transition:all .15s;cursor:pointer;
+  }
+  .mech-chip:hover{border-color:var(--_color,var(--cyan));color:var(--_color,var(--cyan));background:var(--panel-hi)}
+
+  /* matrix */
+  .matrix-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px;background:var(--panel)}
+  table.matrix{width:100%;border-collapse:collapse;font-size:13px;min-width:900px}
+  .matrix th,.matrix td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border)}
+  .matrix thead th{
+    background:var(--bg-2);color:var(--text-dim);font-weight:500;font-size:12px;
+    text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;cursor:pointer;
+    user-select:none;transition:color .15s;
+  }
+  .matrix thead th:hover{color:var(--cyan)}
+  .matrix thead th.active{color:var(--amber)}
+  .matrix tbody tr:hover{background:var(--panel-hi)}
+  .matrix td.mech{font-weight:500;cursor:pointer;color:var(--text)}
+  .matrix td.mech:hover{color:var(--cyan)}
+  .matrix td.score{text-align:center;font-family:'JetBrains Mono',monospace;letter-spacing:.2em}
+  .matrix td.score.highlight{background:rgba(251,191,36,.08);color:var(--amber)}
+
+  /* stacks */
+  .stacks{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .stack-card{
+    padding:22px;border:1px solid var(--border);border-radius:14px;
+    background:var(--panel);position:relative;
+  }
+  .stack-card .s-tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);
+    text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px;
+  }
+  .stack-card h4{font-size:18px;font-weight:700;margin-bottom:6px;letter-spacing:-.01em}
+  .stack-card .s-for{color:var(--text-dim);font-size:13px;margin-bottom:16px}
+  .stack-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .stack-list li{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:10px 12px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+    cursor:pointer;transition:all .15s;font-size:13.5px;
+  }
+  .stack-list li:hover{border-color:var(--cyan);color:var(--cyan)}
+  .stack-list li .idx{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute);
+    min-width:18px;
+  }
+
+  /* slide-over sheet */
+  .overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+    opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;
+  }
+  .overlay.show{opacity:1;pointer-events:auto}
+  .sheet{
+    position:fixed;top:0;right:0;height:100%;width:min(640px,92vw);
+    background:var(--bg-2);border-left:1px solid var(--border);
+    transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);
+    z-index:51;overflow-y:auto;
+  }
+  .sheet.show{transform:translateX(0)}
+  .sheet-head{
+    position:sticky;top:0;background:var(--bg-2);z-index:2;
+    padding:28px 32px 20px;border-bottom:1px solid var(--border);
+  }
+  .sheet-tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;
+    padding:5px 10px;border-radius:999px;
+    background:rgba(34,211,238,.08);color:var(--cyan);
+    border:1px solid rgba(34,211,238,.2);
+    margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em;
+  }
+  .sheet-head h2{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-right:40px}
+  .sheet-close{
+    position:absolute;top:24px;right:24px;width:36px;height:36px;
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    color:var(--text-dim);font-size:18px;transition:all .15s;
+  }
+  .sheet-close:hover{color:var(--text);border-color:var(--border-hi)}
+  .sheet-body{padding:24px 32px 60px}
+  .sheet-section{margin-bottom:24px}
+  .sheet-section h3{
+    font-size:11px;font-family:'JetBrains Mono',monospace;
+    color:var(--amber);text-transform:uppercase;letter-spacing:.15em;
+    margin-bottom:10px;font-weight:600;
+  }
+  .sheet-section .body{color:var(--text);font-size:14.5px;line-height:1.65}
+  .sheet-section .body p+p{margin-top:10px}
+  .sheet-section .body strong{color:#fff;font-weight:600}
+  .sheet-section ul{list-style:none;padding:0}
+  .sheet-section ul li{
+    padding:8px 0 8px 20px;position:relative;color:var(--text);
+    border-bottom:1px dashed var(--border);font-size:14px;line-height:1.55;
+  }
+  .sheet-section ul li:last-child{border-bottom:none}
+  .sheet-section ul li::before{
+    content:'';position:absolute;left:0;top:15px;
+    width:8px;height:2px;background:var(--cyan);
+  }
+  .sheet-section .num-highlight{
+    color:var(--amber);font-family:'JetBrains Mono',monospace;font-weight:600;
+  }
+  .sheet-nav{
+    display:flex;gap:8px;padding:16px 32px;border-top:1px solid var(--border);
+    background:var(--panel);position:sticky;bottom:0;
+  }
+  .sheet-nav button{
+    flex:1;padding:10px 14px;background:var(--bg-2);border:1px solid var(--border);
+    border-radius:8px;color:var(--text-dim);font-family:inherit;font-size:13px;
+    cursor:pointer;transition:all .15s;
+  }
+  .sheet-nav button:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
+  .sheet-nav button:disabled{opacity:.4;cursor:not-allowed}
+
+  /* landscape view (all 6 groups expanded) */
+  .landscape{display:flex;flex-direction:column;gap:32px}
+  .landscape-group h2{
+    font-size:20px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em;
+    display:flex;align-items:baseline;gap:12px;
+  }
+  .landscape-group h2 .num{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);letter-spacing:.1em;
+  }
+  .mech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .mech-card{
+    padding:16px;background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    cursor:pointer;transition:all .2s;
+  }
+  .mech-card:hover{border-color:var(--cyan);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+  .mech-card .mc-id{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute);
+    margin-bottom:6px;
+  }
+  .mech-card h4{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
+  .mech-card p{color:var(--text-dim);font-size:12.5px;line-height:1.5}
+
+  /* footer */
+  footer{
+    margin-top:64px;padding-top:32px;border-top:1px solid var(--border);
+    color:var(--text-mute);font-size:12.5px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+
+  /* filters bar */
+  .filter-bar{
+    display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center;
+  }
+  .filter-bar .label{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute);
+    text-transform:uppercase;letter-spacing:.1em;
+  }
+  .filter-btn{
+    padding:6px 12px;border:1px solid var(--border);background:var(--panel);
+    color:var(--text-dim);font-family:inherit;font-size:12px;border-radius:8px;
+    cursor:pointer;transition:all .15s;
+  }
+  .filter-btn:hover{color:var(--text);border-color:var(--border-hi)}
+  .filter-btn.active{background:rgba(251,191,36,.08);border-color:var(--amber);color:var(--amber)}
+
+  @media (max-width:760px){
+    .groups,.stacks,.shifts,.mech-grid{grid-template-columns:1fr}
+    .wrap{padding:20px 16px 48px}
+    header{flex-direction:column;gap:16px;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <div class="logo-dot">М</div>
+      <div class="logo-meta">
+        <span>Реестр механик</span>
+        <small>Marketing · 2025–2026</small>
+      </div>
+    </div>
+    <div class="source-chip">
+      <span>GenAI Интенсив · Research · 2026-04-17</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-eyebrow">// реестр · 18 механик · 6 групп</div>
+    <h1>Маркетинг стартапов<br>— разобранный на детали</h1>
+    <p class="lede">Механики продвижения, которые реально работают в эпоху LLM-поиска, AI-спама и смерти корпоративных брендов. Что это, как работает, цифры и кейсы, когда брать — для каждой.</p>
+
+    <div class="shifts">
+      <div class="shift">
+        <div class="num">SHIFT 01</div>
+        <div class="title">LLM стали новым поисковиком</div>
+        <div class="body">К 2028 до 25% запросов уйдут в генеративные движки. ChatGPT — 400M+ WAU, Perplexity — 50M+ визитов/мес. SEO нужен, но недостаточен — появился <strong style="color:var(--cyan)">GEO</strong>.</div>
+      </div>
+      <div class="shift">
+        <div class="num">SHIFT 02</div>
+        <div class="title">AI убил дешёвый outbound и inbound</div>
+        <div class="body">Cold email завален AI-спамом, buyers параноят. Побеждает не объём, а <strong style="color:var(--amber)">сигнал + authenticity + trust</strong>. RB2B вырос до $4M ARR почти без cold outbound.</div>
+      </div>
+      <div class="shift">
+        <div class="num">SHIFT 03</div>
+        <div class="title">Каналы сжались до community-first</div>
+        <div class="body">Reddit влияет на ~75% B2B-решений. Личные аккаунты фаундеров получают <strong style="color:var(--violet)">8x больший engagement</strong>. Корпоративные аккаунты мертвы для новых брендов.</div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-view="registry">Реестр <span class="count">18</span></button>
+    <button class="tab" data-view="matrix">Матрица <span class="count">6×18</span></button>
+    <button class="tab" data-view="stacks">GTM-стэки <span class="count">5</span></button>
+    <button class="tab" data-view="landscape">Всё сразу</button>
+  </nav>
+
+  <!-- REGISTRY VIEW -->
+  <div class="view active" data-view="registry">
+    <div class="groups" id="groups-grid"></div>
+  </div>
+
+  <!-- MATRIX VIEW -->
+  <div class="view" data-view="matrix">
+    <div class="filter-bar">
+      <span class="label">Подсветить колонку:</span>
+      <button class="filter-btn active" data-col="-1">—</button>
+      <button class="filter-btn" data-col="0">B2B enterprise</button>
+      <button class="filter-btn" data-col="1">B2B SMB/PLG</button>
+      <button class="filter-btn" data-col="2">Consumer AI</button>
+      <button class="filter-btn" data-col="3">Deep-tech</button>
+      <button class="filter-btn" data-col="4">Dev-tool / OSS</button>
+      <button class="filter-btn" data-col="5">E-commerce / DTC</button>
+    </div>
+    <div class="matrix-wrap">
+      <table class="matrix" id="matrix"></table>
+    </div>
+    <p style="color:var(--text-mute);font-size:12px;margin-top:12px;font-family:'JetBrains Mono',monospace">
+      ★★★ — высокий приоритет · ★★ — поддерживающая · ★ — низкий · — — не подходит · клик по механике → подробности
+    </p>
+  </div>
+
+  <!-- STACKS VIEW -->
+  <div class="view" data-view="stacks">
+    <div class="stacks" id="stacks-grid"></div>
+  </div>
+
+  <!-- LANDSCAPE VIEW -->
+  <div class="view" data-view="landscape">
+    <div class="landscape" id="landscape"></div>
+  </div>
+
+  <footer>
+    <div>Источник: <em>Research-2026-04-17-Маркетинг-стартапов-реестр-механик.md</em></div>
+    <div class="mono">v1.0 · 2026-04-19</div>
+  </footer>
+</div>
+
+<!-- Sheet -->
+<div class="overlay" id="overlay"></div>
+<aside class="sheet" id="sheet">
+  <div class="sheet-head">
+    <div class="sheet-tag" id="sheet-tag">Group</div>
+    <h2 id="sheet-title">Mechanic</h2>
+    <button class="sheet-close" id="sheet-close">×</button>
+  </div>
+  <div class="sheet-body" id="sheet-body"></div>
+  <div class="sheet-nav">
+    <button id="sheet-prev">← Предыдущая</button>
+    <button id="sheet-next">Следующая →</button>
+  </div>
+</aside>
+
+<script>
+// ==================== ДАННЫЕ ====================
+const GROUPS = [
+  {id:1, color:'var(--cyan)', accent:'rgba(34,211,238,.10)', title:'Поиск и дистрибуция', sub:'GEO, AEO, programmatic, content SEO — как попадать в LLM-ответы и выдачу.'},
+  {id:2, color:'var(--violet)', accent:'rgba(167,139,250,.10)', title:'Социальные сообщества', sub:'Reddit, LinkedIn, CLG, dark social — где реально происходят решения.'},
+  {id:3, color:'var(--amber)', accent:'rgba(251,191,36,.10)', title:'Лицо бренда', sub:'Founder-led, build in public, thought leadership — trust через личность.'},
+  {id:4, color:'var(--rose)', accent:'rgba(251,113,133,.10)', title:'Видео-первое', sub:'TikTok, Reels, Shorts, AI UGC — short-form как #1 ROI-канал.'},
+  {id:5, color:'var(--green)', accent:'rgba(52,211,153,.10)', title:'Outbound и продажи', sub:'AI SDR, signal-based, PLG+outbound — качество сигнала вместо объёма.'},
+  {id:6, color:'var(--blue)', accent:'rgba(96,165,250,.10)', title:'Виральные и запуски', sub:'Referrals, waitlists, PH, influencers, podcast tour — launch-engine.'},
+];
+
+const MECHS = [
+  // Группа 1
+  {id:'1.1', groupId:1, title:'GEO — Generative Engine Optimization',
+    what:'Оптимизация контента для цитирования языковыми моделями в их ответах. Пользователь задаёт вопрос ChatGPT/Perplexity — задача бренда попасть в ответ, не в «10 синих ссылок».',
+    how:'LLM при ответе делает query fanout — расщепляет вопрос на ~20 вариаций и синтезирует ответ из десятков источников. Нужно попадать в те источники, которые моделька считает авторитетными: Reddit, Wikipedia, YouTube, G2, LinkedIn, профильные блоги. GEO требует: structured content (прямые ответы), статистики и цитат экспертов, ссылок на авторитетные источники, терминологической точности, активного присутствия в UGC-платформах (Reddit — главный источник для AI).',
+    metric:'Share of Model (SoM) — как часто твой бренд упоминается в ответах AI vs конкуренты. Инструменты: Profound, Evertune, Gauge, Otterly ($39/мес для стартапов).',
+    cases:['Bluente — первый клиент из ChatGPT за 72 часа, рост до 1000+ визитов/мес с 50% конверсией за 3 месяца','Kondo — с 130K до 1.1M impressions за 90 дней (8.6x)','Supplier of commercial plant products — 164 ключевых слова в AI Overviews, +1400% AI traffic, +198% месячной выручки'],
+    when:'B2B SaaS с долгим циклом принятия решения (buyers делают research через ChatGPT перед демо). Consumer-продукты с длинной воронкой — фитнес, finance, healthcare. Категории с «best X for Y» запросами.',
+    antipattern:'Keyword stuffing из эпохи классического SEO. LLM оптимизируют под семантику и entity recognition, а не под плотность ключей.',
+    tools:[]
+  },
+  {id:'1.2', groupId:1, title:'AEO — Answer Engine Optimization',
+    what:'Вариант GEO, более узкий: оптимизация под featured snippets и AI Overviews в Google. Термины AEO/GEO/AI SEO часто используют синонимично.',
+    how:'FAQ-разделы, прямые короткие ответы в первом абзаце, H2/H3 в формате вопросов, schema.org разметка (FAQ, HowTo, Article), таблицы для сравнений. 65% поисковых запросов в 2025 — zero-click, AEO борется за цитирование прямо в выдаче.',
+    when:'Всегда — базовая гигиена. Комбинируется с классическим SEO.',
+    tools:[]
+  },
+  {id:'1.3', groupId:1, title:'Programmatic SEO',
+    what:'Создание тысяч типовых страниц по шаблону, каждая таргетит узкий long-tail запрос. Классика: Zapier, Realtor.com (страница на каждый из 19 495 городов США), Zillow, TripAdvisor.',
+    how:'Берёшь паттерн пользовательских запросов (например, «[инструмент] для [use-case]»), создаёшь БД переменных, один шаблон рендерит тысячи страниц. Google банит за тонкий контент — нужно минимум 500 слов уникального контента на страницу и 30–40% дифференциация между ними.',
+    cases:['Dynamic Mockups (AI image gen) — с 67 до 2100 signups/мес за 10 месяцев (+3035%), органика +850%','UserPilot — 735 постов из 8 шаблонов × 2 БД с 10 переменными, 25.5 часа работы = 29 постов/час','Transit — +1134% органики через locational programmatic pages','KrispCall — отдельная страница на каждый американский код области → 82% US-трафика'],
+    when:'Есть proprietary data (справочник, база компаний, API, шаблоны), таргет-запросы следуют чёткому паттерну «X for Y», «A vs B», «best X in [location]». Типично: B2B SaaS с интеграциями, marketplaces, directories.',
+    risks:'1 из 3 programmatic-внедрений сталкивается с traffic cliff в течение 18 месяцев — Google выкашивает тонкий контент. Решение: progressive rollout (пачками по 100–200), weekly monitoring, квартальный аудит.',
+    tools:['Airtable/PostgreSQL — для данных','Webflow/Next.js — для рендеринга','Passionfruit — для генерации','Screaming Frog — для аудита','Ahrefs — для keyword-маппинга']
+  },
+  {id:'1.4', groupId:1, title:'Классический content SEO (evolved)',
+    what:'Generic informational content умер — Google Helpful Content Update + AI Overviews. Работает только контент с E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness): реальный опыт автора, уникальные данные, кейсы с цифрами.',
+    how:'Pain point SEO (пишешь под конкретные пейны ICP, а не под keyword volume), parasite SEO (публикация на уже-ранжирующихся доменах: Medium, LinkedIn, Reddit, Quora), backlink building через digital PR и HARO-подобные сервисы.',
+    tools:['Ahrefs, Semrush — классика','SurferSEO, Clearscope — content optimization','Passionfruit, Writesonic, Jasper — AI-powered content systems']
+  },
+
+  // Группа 2
+  {id:'2.1', groupId:2, title:'Community-led growth (CLG)',
+    what:'Community — не тактика, а стратегия роста. Компания встраивает сообщество в GTM: снижает CAC (word-of-mouth), уменьшает churn (peer support быстрее тикетов), ускоряет онбординг, генерирует контент и инсайты для продукта.',
+    how:'Два формата: (1) Branded community — собственное пространство (Slack, Discord, Circle). Gong Visionaries, Notion community, Framer community. (2) Dark social participation — активное присутствие в чужих сообществах, где тусуется ICP. Ключевая ошибка — строить community «для компании». Работают сообщества «для участников»: peer access, exclusive insights, образование.',
+    metric:'Компании с сильной community растут 2.1x быстрее и имеют 46% выше LTV. $1 инвестиций в комьюнити возвращает $6.40. 58% топовых SaaS имеют dedicated user community.',
+    when:'Продукт с высокой страстью пользователей (дизайн-тулы, dev-тулы, маркетинг, fitness). Долгий sales cycle — community закрывает доверие между демо и подписанием. Complex onboarding — peer-поддержка эффективнее документации.',
+    tools:[]
+  },
+  {id:'2.2', groupId:2, title:'Reddit marketing',
+    what:'Фокусное присутствие в 3–5 нишевых subreddit, где сидит ICP. Одна из самых быстрорастущих механик 2025: Reddit стал дефолтным местом для B2B-research.',
+    metric:'Reddit влияет на ~75% B2B-решений. 1.1B аккаунтов, 500M месячных визитов. 20+ минут на визит. Q4 2025 алгоритм приоритизирует engagement quality над volume. Community-first даёт -40% cost per conversion и ROAS 4.7x vs 2.3x при broad targeting.',
+    how:'Правила игры: (1) 90/10 — 90% value, 10% promotion, перегнёшь — бан. (2) 48 часов lurking перед первым постом, читать rules и sidebar. (3) Peer-to-peer тон, корпоративный язык выжигается мгновенно. (4) Message мод-группам до любой промо-активности. (5) Никакой автоматизации — Reddit банит быстро.',
+    cases:['Storytel (EMEA) — +3.4x ad awareness, +266% video completion rate','B2B SaaS через InterTeam Marketing — +218% conversion, +25% MQL, -5% CPL','SaaSHero для TripMaster — +$500K ARR через точечную Reddit-стратегию','Targeting r/devops vs r/programming — +340% qualified leads, -60% spend'],
+    when:'Pro-tip: Reddit-посты сильно влияют на GEO/LLM — модели активно цитируют Reddit как источник реальных мнений. Игра «Reddit-контент → LLM-упоминания» — один из сильнейших GEO-рычагов 2026.',
+    tools:['SubredditSignals — мониторинг упоминаний','Reddit Ads — дешевле LinkedIn, G2-интеграция (окт. 2025) даёт social proof']
+  },
+  {id:'2.3', groupId:2, title:'LinkedIn для B2B',
+    what:'По-прежнему #1 канал для B2B, но эволюционировал. LinkedIn CPC в конкурентных нишах $50–$100+, парадигма сдвинулась от paid к organic + personal brand + thought leadership ads.',
+    how:'Механики: (1) Founder-led content — перформит в 8–10x лучше компании. (2) Employee advocacy — сотрудники пушат контент со своих аккаунтов, их сети в 10x больше. (3) Thought leadership ads — компания промоутит пост эксперта как рекламу. (4) LinkedIn Live + Newsletters — узкие, но высоко-engaged форматы для mid-market B2B.',
+    metric:'LinkedIn Q4 2024: +34% YoY video uploads, +36% total video views — платформа агрессивно пушит видео, в т.ч. vertical.',
+    tools:[]
+  },
+  {id:'2.4', groupId:2, title:'Dark social (Telegram, Slack, Discord)',
+    what:'Приватные чаты, где реально происходят B2B-решения и consumer-рекомендации. Нет publicly-tracked мерок, но часто генерит больше pipeline, чем публичные каналы.',
+    how:'Presence в профильных Telegram/Slack-группах; быстрое DM-реагирование на упоминания; invite-only Discord/Slack для power-users (Whop, Circle, Discord-server marketplace); peer-referral механики — «пригласи друга в Slack → обоим +credits».',
+    when:'Консьюмерские AI-продукты (Telegram для RU и международной аудитории), dev-тулы (Discord), B2B с long-tail ICP (tight industry Slack-группы).',
+    tools:[]
+  },
+
+  // Группа 3
+  {id:'3.1', groupId:3, title:'Founder-led marketing',
+    what:'Фаундер становится основным каналом дистрибуции бренда. Вместо корпоративных пресс-релизов и блога — личные посты про lessons, failures, metrics.',
+    how:'Почему работает: trust at all-time low — AI-спам убил дешёвые каналы, люди хотят видеть лицо. Buyers делают backchannel references на фаундера перед покупкой софта. Personal аккаунты имеют 8x больше engagement, чем brand-аккаунты. Работает даже для enterprise: Airbnb пропускает все feature releases через Brian Chesky, OpenAI получала пик engagement с твиттера Альтмана на Sora-launch.',
+    metric:'Ритм (Adam Robinson, 2024): 2 thought leadership + 1 work-in-public пост в неделю, 3–5 podcast slots, ответ на каждый коммент → 21M views, +61K followers. 2025: 5 постов/неделю + newsletter → 200K followers. Формула 65/25/10: 65% authority, 25% personal stories, 10% sales. Никаких 100% sales постов.',
+    cases:['Adam Robinson / RB2B — $4M ARR почти полностью из founder-led','Guillaume Moubeche / lempire — превратил свой путь в контент-воронку без cold outbound','Parker Conrad / Rippling — технически сложный продукт объясняется через личные посты CEO','Melanie Perkins / Canva — $26B оценка через транзит-story «отказали 100 инвесторов»','Ben Francis / Gymshark — B2C через founder-brand с TikTok-DNA','Neil Patel — марафон постов в LinkedIn, масса inbound для маркетинг-агентств'],
+    when:'Платформы: B2B → LinkedIn + Twitter/X. Dev-tools → Twitter/X. Consumer-visual → TikTok/Instagram. Enterprise → LinkedIn + podcast tour. Формат: build-in-public moments (милстоуны, метрики, факапы), anti-hero stories, сильные POV на индустрию.',
+    tools:[]
+  },
+  {id:'3.2', groupId:3, title:'Build in public',
+    what:'Публичное документирование пути стартапа — revenue, пользователи, решения, факапы — в реальном времени. Создаёт аудиторию до запуска продукта.',
+    how:'Ритуалы: ежедневный update «сегодня [что сделал] → [что выучил]»; публикация MRR/ARR/user counts; пост-мортемы факапов с цифрами; еженедельные метрики / changelog.',
+    cases:['Pieter Levels / Nomad List + Photo AI — $10K MRR за 3 недели через build-in-public, 318 клиентов @ $31/мес','Marc Lou — портфолио side-проектов, все выращены через Twitter-транспарентность','Indie hacker анонимно — 2400 followers за 4 месяца → launch day $8K MRR'],
+    when:'Solo-founder или очень маленькая команда, consumer или dev-tool продукты с visual progress, storytelling-способный фаундер. Не работает для enterprise-сложного продукта или когда нужна конфиденциальность (финтех, healthcare).',
+    tools:['Twitter/X — главная платформа','Indie Hackers — 115K+ в subreddit','LinkedIn — неожиданно работает для tech-продуктов','dev.to, Hashnode — дев-ориентированные']
+  },
+  {id:'3.3', groupId:3, title:'Thought leadership ads (LinkedIn)',
+    what:'Новый рекламный формат LinkedIn: компания платит за промоушн органических постов своих сотрудников/экспертов. Пост выглядит как органический, но с пометкой «Promoted by [Company]».',
+    how:'Обходит ad-blindness, использует engagement пост-боунд к личному аккаунту (CTR в 5–10x выше brand-аккаунта), LinkedIn алгоритм даёт бонус органическому охвату.',
+    when:'B2B с хорошим пулом экспертных сотрудников. Комбинируется с founder-led: сначала органический engagement → затем промоушн лучших постов.',
+    tools:[]
+  },
+
+  // Группа 4
+  {id:'4.1', groupId:4, title:'AI UGC ads (AI-аватары)',
+    what:'Видео-ад, имитирующий пользовательский контент (talking-head «реального человека»), но целиком сгенерированный AI: синтетическое лицо + voice cloning + автоматический lip-sync.',
+    how:'Meta и TikTok алгоритмы предпочитают native face-to-camera контент. Человеческий UGC: +30% drop CPA, ROI $4.12/$1 на Instagram (Aspire 2025). AI-версия: -23% production cost, 2 минуты вместо 2 недель, 10+ языков без переснимания. Тактика: hook в первые 3 секунды → аватар под audience → CTA голосовой + overlay → 5–10 вариаций на angle → 50 вариаций в день на peak-тестировании.',
+    risks:'Authenticity drop: real human UGC имеет +28% engagement и +161% conversion vs AI-generated. Лучший паттерн — hybrid: AI для volume-testing, человеческий UGC для winning creatives. Compliance: EU требует раскрытия AI-контента, Китай — строгое labeling, US — прозрачность. Многие видео всё ещё выглядят AI-generated, снижая perceived trust.',
+    when:'E-commerce, mobile apps, DTC. Сложно для B2B SaaS — там решают thought leadership, не talking-head UGC.',
+    tools:['HeyGen — наиболее реалистичные аватары, $24/мес unlimited, 7M monthly visitors','Synthesia — enterprise-фокус','Creatify — URL-to-video, 300+ аватаров, batch-creation','Arcads AI — emotionally expressive actors для performance-ads','Mintly — e-commerce (сохраняет packaging/лого), $39–99/мес','MakeUGC.ai — до 300 аватаров, 2 мин/видео, мультиязычность','TikTok Symphony Creative Studio — встроено в ads-кабинет TikTok, licensed assets от Getty/Billo']
+  },
+  {id:'4.2', groupId:4, title:'TikTok / Reels / YouTube Shorts',
+    what:'Short-form video — самый высокий ROI среди всех форматов (31% маркетологов ранжируют #1). 90% consumers смотрят short-form ежедневно. Рост +71% за год, TikTok лидирует.',
+    metric:'TikTok 1.6B активных пользователей, среднее время 95 мин/день. Reels — engagement 300% выше обычных постов, но views упали на 59% для средних аккаунтов (алгоритм сместился к малым + большим). YouTube Shorts — 70B daily views, цель на 2025 — 200B. LinkedIn vertical video (2024–2025): B2B получают 10x больше impressions, +34% uploads YoY.',
+    how:'TikTok — discovery-engine, авто-показ за счёт интересов. CPM €5–6, CPC €0.20–0.40. Новинки 2025: Pulse campaigns, Creative Codes, Symphony AI, Search Ads. Reels — сильна для visual-брендов. Shorts — evergreen, сильный рычаг для subscriber growth на длинный контент. Паттерны 2026: (1) faceless content — product-focused без людей, (2) recycling — репост старого контента через 4–8 недель с новым hook, (3) microlearning (2–5 мин), (4) educational series (Top 5, Mistakes in X), (5) authenticity-first — raw > отполированное. Оптимум 30–60 сек, Shorts — 25–35 сек.',
+    tools:[]
+  },
+  {id:'4.3', groupId:4, title:'Faceless YouTube / AI content farms',
+    what:'Каналы без автора-лица: voice-over + stock/AI-ассеты + автоматизированный pipeline. Темы: finance, tech, science, true crime, self-improvement.',
+    how:'Стек: генерация сценариев Claude/GPT → voice-over ElevenLabs → визуал Midjourney/Sora/Runway + stock (Envato, Artgrid) → монтаж Descript/CapCut. Масштабирование: 1 пайплайн → 3–5 каналов на разных языках.',
+    when:'Для стартапа — построение owned-медиа-канала для categories с длинным SEO-хвостом. Отложенная, но мощная рычаг — YouTube Search и recommended feed дают compound growth через годы.',
+    tools:[]
+  },
+
+  // Группа 5
+  {id:'5.1', groupId:5, title:'AI SDR и signal-based outreach',
+    what:'В 2024 можно было слать 50 cold emails/день из Gmail. В 2026 это едва прогревает inbox: spam filters ужесточились, buyers выгорели, human SDR слишком дорогой. AI SDR забирает всё, что можно автоматизировать.',
+    metric:'AI SDR-команды дают +30% conversion rate, -60% response time, до 70% стоимости меньше ручного outreach. Agentic-платформы (Landbase GTM-1 Omni) работают автономно 24/7.',
+    how:'Signal-based > volume-based. Больше не массовые рассылки, а триггерный outbound: job change → outreach через 48 часов; funding announcement → outreach с congratulations + value prop; SOC2-compliance search → security-focused pitch. Conversion signal-based outreach часто в 10x выше, чем broad.',
+    antipattern:'AI-generated spam — buyers детектят мгновенно. Нужен reverse-pattern: AI делает research и drafts, человек редактирует и кастомизирует. Pure AI-outreach выжигает domain reputation за недели.',
+    tools:['Clay — data enrichment layer, 75+ источников. Oyster автоматизировала intent-outbound через Clay. Rippling — 2x улучшение cold email YoY. Стандарт для любого outbound-стека','Agent Frank / Salesforge — полноценный AI SDR (co-pilot + auto-pilot), встроен в Mailforge + Infraforge + Leadsforge','11x.ai (Alice) — LinkedIn-фокус, автономные кампании','Coldreach.ai — signal-based: job openings / tech changes / funding / SOC2 как buyer intent','Artisan.ai (Ava) — массовый personalized email с research-driven перcонализацией','Apollo.io — #1 database (275M+ контактов) + базовая автоматизация','Smartlead.ai — deliverability-специалист (inbox rotation, warmup)','Lavender — real-time AI coach для writers, улучшает reply rates']
+  },
+  {id:'5.2', groupId:5, title:'LinkedIn outreach (automated)',
+    what:'Автоматизация LinkedIn-нетворкинга. LinkedIn банит агрессивные боты мгновенно — нужны human-like timing, respect limits (20–30 connection requests в день на аккаунт).',
+    how:'Паттерн: connection request без пичинга → value-first follow-up через 3–5 дней → soft pitch на 7–10 день. Никаких generic шаблонов — AI-персонализация из LinkedIn profile + company data обязательна.',
+    tools:['HeyReach — safe automation, multi-account','Lemlist — combined email + LinkedIn','Expandi']
+  },
+  {id:'5.3', groupId:5, title:'Product-led outbound (PLG + outbound)',
+    what:'Гибрид: продукт free/freemium, но на top-of-funnel работает targeted outbound. Free пользователь из ICP-компании — триггер для SDR прогнать warm-outreach внутри компании, чтобы получить team/enterprise plan.',
+    how:'Превращает пассивных signups в pipeline. Website visitor identification + company-level intent signals.',
+    tools:['Warmly — identifies website visitors + их company','Pocus, Unify — PLG intelligence','Apollo с intent signals']
+  },
+
+  // Группа 6
+  {id:'6.1', groupId:6, title:'Referral loops',
+    what:'Классика: Dropbox — +3900% рост за 15 месяцев (100K → 4M users). Ключ: two-sided incentive привязан к core-value продукта (500MB storage за каждого приведённого — обоим сторонам). PayPal — первые $20 за сигнап, $20 за друга, $60M на rewards, 7–10% daily growth.',
+    how:'2025–2026 playbook: (1) промо в high-engagement моменты — onboarding, первый success milestone, storage/usage limit. (2) Two-sided incentive — односторонние работают в 2x хуже. (3) Value-aligned — reward = ядро продукта (storage для cloud-storage, credits для AI). Деньги работают хуже, чем product-tied. (4) Email trigger loop после каждой конверсии. (5) Target viral coefficient ≥ 1.0 — каждый пользователь приводит 1+ нового.',
+    cases:['Bolt.new (AI coding) — виральная referral программа + free tokens → billions of tokens generated, один из быстрейших AI-запусков 2025'],
+    tools:['Viral Loops','Prefinery','GrowSurf','ReferralCandy','Tapfiliate — affiliate + influencer hybrid']
+  },
+  {id:'6.2', groupId:6, title:'Waitlist + invite-only',
+    what:'AI-продукт с дорогим inference (нельзя открывать всем без bankruptcy); consumer-продукт где нужен FOMO; B2B beta для targeted ICP-feedback.',
+    how:'Психология: Zeigarnik effect (мозг фиксируется на незавершённом), anticipation активирует reward-центры сильнее, чем само получение. Scarcity = perceived value. Механика: «Refer 3 friends → move up 500 spots» — доминирующий viral loop для AI-launches 2025–2026. Custom fields (use case, role, company) → admitting highest-fit users first. Queue-skip позиции и credit-boosts — главные рычаги.',
+    cases:['Robinhood — 1M signups pre-launch через queue-position incentive','Clubhouse — 10M users за первый год, invites продавались на eBay по $400, каждому давали 2 invites','Notion 2.0 — 20K+ waitlist в 2018, tiered access → 1M users к 2019','Superhuman — premium-waitlist с personal onboarding call и $30/мес от дня 1','Notion AI — 1M signups за 5 недель, waitlist feedback привёл к pivot pricing'],
+    tools:['GetWaitlist ($15/мес)','LaunchList (lifetime pricing, 3000+ startups)','KickoffLabs','Viral Loops ($35+/мес, premium)','Waitlister (free tier)']
+  },
+  {id:'6.3', groupId:6, title:'Product Hunt launch',
+    what:'Алгоритм резко ужесточился в июне 2023 и октябре 2024. Only 10% продуктов получают featured. Средний featured launch — 2000+ уникальных визитов, топ-#1 — 10K+. Но conversion падает: Tomas Blatak — 300 upvotes в 2023 = 91 платящий клиент; 612 upvotes в 2024 = 1 платящий клиент. Product Hunt стал brand-building + credibility play, не primary growth channel.',
+    how:'Playbook 2026: (1) 6 недель prep — обязательно. (2) Pre-launch audience — 200–500 warm supporters. (3) Launch day 12:01 AM PST, Tue/Wed оптимально. (4) Hour-by-hour tracker — первые 4 часа и последние 2 критичны, равномерная распределённость (PH флагирует spike-паттерны). (5) LinkedIn DMs > paid — $2K на DM-операцию 3 человек в течение недели = 300–500 real upvotes. (6) Multiple relaunches — AFFiNE запускался 30+ раз за 18 месяцев как #1 winner.',
+    cases:['Tally.so — #1 day, 5000+ users (6 месяцев community-prep)','Reply.io — 10K visitors за 2 дня, 600 signups, 60 платящих → $60K LTV','Bird Eats Bug — #5 day, 500+ installs, 1000 bugs reported day 1','Smart Q — #1 day с 852 upvotes → $14K MRR через 2 месяца'],
+    when:'Когда НЕ идти: B2B enterprise (их ICP не читает PH), highly regulated industries, если продукт не готов выдержать traffic-spike.',
+    tools:[]
+  },
+  {id:'6.4', groupId:6, title:'Micro/nano-influencer + affiliate',
+    what:'Macro-influencers (1M+) уступают nano (1K–10K) и micro (10K–100K). Engagement в 2–3x выше, дешевле, authenticity выше. 86% брендов используют influencers в 2025, средний ROI $5.78 на $1.',
+    how:'Модели: (1) Product seeding — free product 20 creator-ам, 3 из них постят органически. (2) Paid per post — nano $500–800, micro $800–3000, macro $5K+. (3) Affiliate/revenue share — 10–20% commission. (4) Hybrid — маленький upfront + performance bonus.',
+    cases:['tentree (sustainable apparel) — 13x ROI, 1000+ tracked conversions, 800+ UGC pieces repurposed','Daniel Wellington — $15K → $200M+ business через micro-influencer strategy','TokyoTreat — long-term affiliate relationships с YouTubers, scalable subscription growth','Branch Basics — micro-influencers для product-education (товар требует объяснения)'],
+    when:'Старт с $5K на 8–10 nano/micro-creators @ $500–800 each. Usage rights upfront → их контент становится твоим retargeting-ad creative. Не гоняйся за macro пока не подтвердил что работает.',
+    tools:['GRIN — CRM для influencers, для серьёзных программ','Creator.co — self-serve $460/мес','Billo — content factory, оплата после получения видео','Stack Influence — Amazon-focused','JoinBrands — 100K+ creators']
+  },
+  {id:'6.5', groupId:6, title:'Launch amplification (press + podcast tour)',
+    what:'Традиционный PR мёртв (TechCrunch coverage = spike → flat), подкасты живее всех живых. Adam Robinson: 3–5 podcast slots в 2024, увеличил до 1–2/неделю на большие шоу в 2025. Каждое выступление → backlinks + authority + entry в новую аудиторию.',
+    how:'Targeted list из 30–50 подкастов в нише → personalized pitch с concrete angle → запись → повторное использование контента (посты, цитаты, видео-клипы в Shorts). 1 подкаст → 5–10 assets через repurposing.',
+    tools:[]
+  }
+];
+
+const MATRIX_COLS = ['B2B enterprise','B2B SMB/PLG','Consumer AI','Deep-tech','Dev-tool / OSS','E-commerce / DTC'];
+const MATRIX_ROWS = [
+  ['GEO / AEO',         '⭐⭐⭐','⭐⭐⭐','⭐⭐','⭐⭐','⭐⭐⭐','⭐⭐', '1.1'],
+  ['Programmatic SEO',  '⭐⭐','⭐⭐⭐','⭐','—','⭐⭐','⭐⭐⭐', '1.3'],
+  ['Content SEO',       '⭐⭐⭐','⭐⭐⭐','⭐⭐','⭐⭐⭐','⭐⭐⭐','⭐⭐', '1.4'],
+  ['Community-led',     '⭐⭐','⭐⭐⭐','⭐⭐','⭐⭐⭐','⭐⭐⭐','⭐⭐', '2.1'],
+  ['Reddit',            '⭐⭐','⭐⭐⭐','⭐⭐','⭐⭐','⭐⭐⭐','⭐⭐', '2.2'],
+  ['LinkedIn organic',  '⭐⭐⭐','⭐⭐⭐','⭐','⭐⭐','⭐⭐','⭐', '2.3'],
+  ['Founder-led',       '⭐⭐⭐','⭐⭐⭐','⭐⭐','⭐⭐','⭐⭐⭐','⭐⭐', '3.1'],
+  ['Build in public',   '⭐','⭐⭐','⭐⭐⭐','⭐','⭐⭐⭐','⭐⭐', '3.2'],
+  ['TikTok / Reels / Shorts','⭐','⭐⭐','⭐⭐⭐','⭐','⭐⭐','⭐⭐⭐', '4.2'],
+  ['AI UGC ads',        '⭐','⭐⭐','⭐⭐⭐','—','⭐','⭐⭐⭐', '4.1'],
+  ['AI SDR outbound',   '⭐⭐⭐','⭐⭐','—','⭐⭐','⭐','⭐', '5.1'],
+  ['Referral loops',    '⭐⭐','⭐⭐⭐','⭐⭐⭐','⭐','⭐⭐','⭐⭐⭐', '6.1'],
+  ['Waitlist',          '⭐','⭐⭐','⭐⭐⭐','⭐⭐','⭐⭐','⭐⭐', '6.2'],
+  ['Product Hunt',      '⭐','⭐⭐','⭐⭐','⭐','⭐⭐⭐','⭐', '6.3'],
+  ['Micro-influencer',  '⭐','⭐','⭐⭐⭐','⭐','⭐','⭐⭐⭐', '6.4'],
+  ['Podcast tour',      '⭐⭐⭐','⭐⭐','⭐','⭐⭐⭐','⭐⭐','⭐', '6.5'],
+];
+
+const STACKS = [
+  {tag:'Стэк А', title:'B2B SaaS для SMB', forWhom:'типа RiskMatrix, Quantara', items:[
+    ['3.1','Founder-led LinkedIn (5 постов/неделю) — основной inbound-канал'],
+    ['1.3','Programmatic SEO под [tool] + [use case] и [competitor] vs [competitor]'],
+    ['5.1','AI SDR через Clay + Agent Frank — signal-based outreach (funding, hiring, compliance)'],
+    ['1.1','GEO/AEO как compound layer на long horizon'],
+    ['2.2','Reddit + communities где сидит ICP (r/startups, r/SaaS, профильные)'],
+  ]},
+  {tag:'Стэк Б', title:'Consumer AI-приложение', forWhom:'типа Inva, AI-компаньоны', items:[
+    ['6.2','Waitlist + viral referral (refer 3 → skip 500) — launch-day engine'],
+    ['4.1','TikTok + Reels с AI UGC (HeyGen/Mintly) — acquisition'],
+    ['3.2','Build in public на Twitter/X — authenticity + early supporters'],
+    ['6.3','Product Hunt как brand-credibility moment'],
+    ['6.4','Micro-influencer seeding — 20 creator-ам в нише'],
+  ]},
+  {tag:'Стэк В', title:'Deep-tech / научный стартап', forWhom:'типа MedAnaliz', items:[
+    ['3.1','Founder thought leadership (LinkedIn + podcasts) — trust и investor awareness'],
+    ['1.4','Content SEO с E-E-A-T — детальные отраслевые материалы'],
+    ['2.1','Niche community — профильные Slack/Discord группы в индустрии'],
+    ['6.5','Partnerships + pilot-кейсы вместо mass-marketing'],
+    ['5.1','Targeted outbound через Clay с academic intent signals'],
+  ]},
+  {tag:'Стэк Г', title:'Dev-tool / open-source', forWhom:'технические продукты', items:[
+    ['2.2','Reddit + HackerNews + Twitter/X — главные каналы'],
+    ['2.1','GitHub как маркетинг — README, issues, community PRs как воронка'],
+    ['3.1','Build in public + founder-led'],
+    ['6.3','Product Hunt relaunches на major release'],
+    ['2.1','Contributor community (Discord + regular contributor rewards)'],
+  ]},
+  {tag:'Стэк Д', title:'E-commerce / DTC', forWhom:'типа food-tech проекты', items:[
+    ['4.1','AI UGC ads на Meta/TikTok (Mintly/Creatify, 50+ variations/day)'],
+    ['6.4','Micro-influencer affiliate — 10–20 creator-ов на revenue share'],
+    ['6.1','Referral loops с product-tied rewards'],
+    ['4.2','TikTok Shop integration для direct commerce'],
+    ['1.3','Programmatic SEO для long-tail queries (best X for Y in [location])'],
+  ]},
+];
+
+// ==================== РЕНДЕРИНГ ====================
+const $ = (s,c=document)=>c.querySelector(s);
+const $$ = (s,c=document)=>Array.from(c.querySelectorAll(s));
+
+function renderGroups(){
+  const grid = $('#groups-grid');
+  grid.innerHTML = GROUPS.map(g=>{
+    const mechs = MECHS.filter(m=>m.groupId===g.id);
+    const chips = mechs.map(m=>`<span class="mech-chip" data-mech="${m.id}">${m.title.split('—')[0].trim()}</span>`).join('');
+    return `<div class="group-card" style="--_accent:${g.accent};--_color:${g.color}" data-group="${g.id}">
+      <div class="g-head">
+        <span class="g-num">ГРУППА 0${g.id}</span>
+        <span class="g-count">${mechs.length} механик</span>
+      </div>
+      <h3>${g.title}</h3>
+      <p>${g.sub}</p>
+      <div class="mechs">${chips}</div>
+    </div>`;
+  }).join('');
+  // chips click
+  $$('.mech-chip').forEach(chip=>{
+    chip.addEventListener('click',e=>{
+      e.stopPropagation();
+      openSheet(chip.dataset.mech);
+    });
+  });
+}
+
+function renderMatrix(){
+  const t = $('#matrix');
+  const head = `<thead><tr><th>Механика</th>${MATRIX_COLS.map((c,i)=>`<th data-col="${i}">${c}</th>`).join('')}</tr></thead>`;
+  const body = `<tbody>${MATRIX_ROWS.map(r=>{
+    const [name,...scores] = r;
+    const mechId = scores[scores.length-1];
+    const s = scores.slice(0,-1);
+    return `<tr>
+      <td class="mech" data-mech="${mechId}">${name}</td>
+      ${s.map((v,i)=>`<td class="score" data-col="${i}">${v}</td>`).join('')}
+    </tr>`;
+  }).join('')}</tbody>`;
+  t.innerHTML = head+body;
+  $$('.matrix td.mech').forEach(td=>td.addEventListener('click',()=>openSheet(td.dataset.mech)));
+}
+
+function renderStacks(){
+  $('#stacks-grid').innerHTML = STACKS.map(s=>{
+    const items = s.items.map((it,i)=>`<li data-mech="${it[0]}"><span class="idx">0${i+1}</span><span>${it[1]}</span></li>`).join('');
+    return `<div class="stack-card">
+      <div class="s-tag">${s.tag}</div>
+      <h4>${s.title}</h4>
+      <div class="s-for">${s.forWhom}</div>
+      <ul class="stack-list">${items}</ul>
+    </div>`;
+  }).join('');
+  $$('.stack-list li').forEach(li=>li.addEventListener('click',()=>openSheet(li.dataset.mech)));
+}
+
+function renderLandscape(){
+  $('#landscape').innerHTML = GROUPS.map(g=>{
+    const mechs = MECHS.filter(m=>m.groupId===g.id);
+    const cards = mechs.map(m=>{
+      const preview = (m.what||'').split('.').slice(0,1).join('.')+'.';
+      return `<div class="mech-card" data-mech="${m.id}">
+        <div class="mc-id">${m.id}</div>
+        <h4>${m.title}</h4>
+        <p>${preview}</p>
+      </div>`;
+    }).join('');
+    return `<div class="landscape-group">
+      <h2><span class="num">0${g.id}</span> ${g.title}</h2>
+      <div class="mech-grid">${cards}</div>
+    </div>`;
+  }).join('');
+  $$('.mech-card').forEach(c=>c.addEventListener('click',()=>openSheet(c.dataset.mech)));
+}
+
+// ==================== SHEET ====================
+function highlightNumbers(text){
+  if(!text) return text;
+  return text.replace(/(\d[\d.,]*\s*(?:%|×|x|x|млн|тыс|K|M|B|млрд|ARR|MRR|ROAS|ROI|USD|₽|\$)?(?:\s*(?:users|signups|conversion|impressions|visits|clients|минут|дн(?:ей|я)?|часов?)?)?)/g, '<span class="num-highlight">$1</span>');
+}
+
+function openSheet(mechId){
+  const m = MECHS.find(x=>x.id===mechId);
+  if(!m) return;
+  const g = GROUPS.find(x=>x.id===m.groupId);
+  $('#sheet-tag').textContent = `${m.id} · ${g.title}`;
+  $('#sheet-tag').style.color = g.color;
+  $('#sheet-tag').style.background = g.accent;
+  $('#sheet-tag').style.borderColor = g.color;
+  $('#sheet-title').textContent = m.title;
+
+  const sections = [];
+  if(m.what) sections.push(['Что это', `<p>${m.what}</p>`]);
+  if(m.how) sections.push(['Как работает', `<p>${m.how}</p>`]);
+  if(m.metric) sections.push(['Метрики и цифры', `<p>${highlightNumbers(m.metric)}</p>`]);
+  if(m.cases && m.cases.length) sections.push(['Кейсы', `<ul>${m.cases.map(c=>`<li>${highlightNumbers(c)}</li>`).join('')}</ul>`]);
+  if(m.when) sections.push(['Когда использовать', `<p>${m.when}</p>`]);
+  if(m.antipattern) sections.push(['Анти-паттерн', `<p>${m.antipattern}</p>`]);
+  if(m.risks) sections.push(['Риски', `<p>${m.risks}</p>`]);
+  if(m.tools && m.tools.length) sections.push(['Инструменты', `<ul>${m.tools.map(t=>`<li>${t}</li>`).join('')}</ul>`]);
+
+  $('#sheet-body').innerHTML = sections.map(([h,body])=>`<div class="sheet-section"><h3>${h}</h3><div class="body">${body}</div></div>`).join('');
+
+  // nav
+  const idx = MECHS.findIndex(x=>x.id===mechId);
+  $('#sheet-prev').disabled = idx<=0;
+  $('#sheet-next').disabled = idx>=MECHS.length-1;
+  $('#sheet-prev').onclick = ()=>openSheet(MECHS[idx-1].id);
+  $('#sheet-next').onclick = ()=>openSheet(MECHS[idx+1].id);
+
+  $('#sheet').classList.add('show');
+  $('#overlay').classList.add('show');
+  $('#sheet').scrollTop = 0;
+}
+function closeSheet(){
+  $('#sheet').classList.remove('show');
+  $('#overlay').classList.remove('show');
+}
+$('#sheet-close').addEventListener('click',closeSheet);
+$('#overlay').addEventListener('click',closeSheet);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+
+// group card click → landscape
+function onGroupClick(){
+  $$('.group-card').forEach(c=>c.addEventListener('click',()=>{
+    // переключаемся на landscape и скроллим к группе
+    switchTab('landscape');
+    const target = $(`.landscape-group:nth-child(${c.dataset.group})`);
+    if(target) setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),150);
+  }));
+}
+
+// ==================== TABS ====================
+function switchTab(view){
+  $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===view));
+  $$('.view').forEach(v=>v.classList.toggle('active',v.dataset.view===view));
+}
+$$('.tab').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.view)));
+
+// ==================== MATRIX FILTER ====================
+$$('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+  $$('.filter-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const col = parseInt(b.dataset.col);
+  $$('.matrix td.score').forEach(td=>{
+    td.classList.toggle('highlight', col>=0 && parseInt(td.dataset.col)===col);
+  });
+  $$('.matrix thead th').forEach(th=>{
+    th.classList.toggle('active', col>=0 && parseInt(th.dataset.col)===col);
+  });
+}));
+
+// ==================== INIT ====================
+renderGroups();
+renderMatrix();
+renderStacks();
+renderLandscape();
+onGroupClick();
+</script>
+</body>
+</html>
