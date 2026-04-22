@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* ─── Base ────────────────────────────────────────────────────────── */
+html,
+body {
+  background-color: #09090b; /* zinc-950 */
+}
+
+/* ─── Thin scrollbars ─────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46; /* zinc-700 */
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b; /* zinc-600 */
+}
+
+/* ─── Selection colour ────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(99, 102, 241, 0.25);
+}
