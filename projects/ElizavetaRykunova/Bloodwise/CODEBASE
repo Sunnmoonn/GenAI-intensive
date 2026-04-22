@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Bloodwise MVP</title>
+  <style>
+    body { font-family: Arial; max-width: 800px; margin: 40px auto; }
+    textarea { width: 100%; height: 150px; }
+    button { margin-top: 10px; padding: 10px 20px; }
+    .card { padding: 10px; margin-top: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+
+<body>
+
+<h1>Bloodwise — анализ крови</h1>
+
+<p>Вставьте результаты анализа:</p>
+
+<textarea id="input"></textarea>
+<br>
+<button onclick="analyze()">Анализировать</button>
+
+<h2>Результат:</h2>
+<div id="output"></div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
